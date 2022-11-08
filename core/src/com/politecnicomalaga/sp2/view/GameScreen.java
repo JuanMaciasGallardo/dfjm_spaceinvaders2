@@ -54,6 +54,9 @@ public class GameScreen implements Screen {
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
 
             }
+
+            // touchDragger que cambia x de la nave
+
         });
         heroShip.setTouchable(Touchable.enabled);
 

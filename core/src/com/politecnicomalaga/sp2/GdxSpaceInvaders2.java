@@ -11,7 +11,7 @@ import com.politecnicomalaga.sp2.managers.SettingsManager;
 public class GdxSpaceInvaders2 extends Game {
 	SpriteBatch batch;
     OrthographicCamera camera;
-
+	// añadimos Screens
 	
 	@Override
 	public void create () {
@@ -25,7 +25,7 @@ public class GdxSpaceInvaders2 extends Game {
 	public void render () {
 		ScreenUtils.clear(0, 0, 0, 1);
 		batch.begin();
-
+		//screen?
 		batch.end();
 	}
 	

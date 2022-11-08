@@ -13,16 +13,18 @@ public class EnemyShip extends Actor {
 
     private Animation<TextureRegion> skin;
 
+    // Las constantes están definidas en los managers.
     public EnemyShip() {
         super();
         TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("images/enemy.pack"));
         skin = new Animation<TextureRegion>(0.25f, atlas.findRegions("green_enemy"), Animation.PlayMode.LOOP);
-
+        //                                      Settings                        Assets
     }
     @Override
     public void draw(Batch batch, float parentAlpha) {
         super.draw(batch, parentAlpha);
         TextureRegion currentFrame = skin.getKeyFrame(GameManager.getSingleton().getGameTime(), true);
         batch.draw(currentFrame, this.getX(), this.getY());
+        //                      + tamaño (como parte de Settings, Enemies_Size)
     }
 }

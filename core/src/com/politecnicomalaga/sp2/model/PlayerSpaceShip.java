@@ -16,7 +16,7 @@ public class PlayerSpaceShip extends Actor {
         super();
         TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("images/player.pack"));
         skin = new Animation<TextureRegion>(0.25f, atlas.findRegions("blue"), Animation.PlayMode.LOOP);
-
+        // Añade setBounds, setX y setY
     }
     @Override
     public void draw(Batch batch, float parentAlpha) {

@@ -9,6 +9,8 @@ public class Battalion {
     private Array<Squadron> squadrons;
 
     public Battalion(Stage baseStage) {
+        // Altura y offset
+
         //Initiate the arraylist
         squadrons = new Array<Squadron>();
 
