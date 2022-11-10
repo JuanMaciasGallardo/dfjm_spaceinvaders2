@@ -15,6 +15,8 @@ public class SettingsManager {
     // ACTOR
     public static final short PLAYER_SIZE = 50;
     public static final short ENEMY_SIZE = 50;
+    public static final short PLAYER_HOR_POS = SCREEN_MID_WIDTH;
+    public static final short PLAYER_VER_POS = 5;
 
     // SQUAD
     public static final short BATTALION_SIZE = 4;
