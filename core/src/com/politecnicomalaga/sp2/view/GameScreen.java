@@ -29,16 +29,18 @@ public class GameScreen implements Screen {
     public GameScreen(Game aGame) {
         game = aGame;
 
-        //Esta orden se puede poner también en el show()
+        // THIS SENTENCE CAN BE TYPED IN SHOW() TOO.
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
 
         // ADD THE BATTALION
-        //Battalion empire = new Battalion(stage);
+        Battalion empire = new Battalion(stage);
+        empire.addActors();
 
         // ADD PLAYER WITH EVENTS
         heroShip = new PlayerSpaceShip();
         stage.addActor(heroShip);
+
         heroShip.addListener(new InputListener() {
 
             @Override
@@ -50,7 +52,7 @@ public class GameScreen implements Screen {
             @Override
             public void touchDragged(InputEvent event, float x, float y, int pointer) {
                 heroShip.setX(Gdx.input.getX() - SettingsManager.PLAYER_SIZE/2);
-                heroShip.setY(SettingsManager.SCREEN_HEIGHT - Gdx.input.getY() - SettingsManager.PLAYER_SIZE/2);
+                //heroShip.setY(SettingsManager.SCREEN_HEIGHT - Gdx.input.getY() - SettingsManager.PLAYER_SIZE/2);
             }//EVENT
 
             /*
@@ -72,7 +74,7 @@ public class GameScreen implements Screen {
 
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        stage.act();
+        stage.act(delta);
         stage.draw();
     }//RENDER
 

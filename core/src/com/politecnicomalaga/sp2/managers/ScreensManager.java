@@ -7,7 +7,6 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.politecnicomalaga.sp2.view.GameScreen;
 
 public class ScreensManager extends ScreenAdapter {
-    // Programar clase
     private Screens activeScreen;
     public enum Screens {START, PLAYING, END};
     private GameScreen gs;

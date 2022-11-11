@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.politecnicomalaga.sp2.managers.AssetsManager;
 import com.politecnicomalaga.sp2.managers.GameManager;
 import com.politecnicomalaga.sp2.managers.SettingsManager;
@@ -19,7 +18,7 @@ public class PlayerSpaceShip extends Actor {
     public PlayerSpaceShip() {
         super();
         TextureAtlas atlas = new TextureAtlas(Gdx.files.internal(AssetsManager.ATLAS_PATH));
-        skin = new Animation<TextureRegion>(SettingsManager.ANIMATION_TIME, atlas.findRegions(AssetsManager.REGION_PLAYER_NAME), Animation.PlayMode.LOOP);
+        skin = new Animation<TextureRegion>(SettingsManager.PLAYER_ANIMATION_TIME, atlas.findRegions(AssetsManager.REGION_PLAYER_NAME), Animation.PlayMode.LOOP);
         this.setBounds(0, 0, SettingsManager.PLAYER_SIZE,  SettingsManager.PLAYER_SIZE);
         this.setX(SettingsManager.PLAYER_HOR_POS - SettingsManager.PLAYER_SIZE/2);
         this.setY(SettingsManager.PLAYER_VER_POS);
