@@ -12,19 +12,23 @@ import com.politecnicomalaga.sp2.managers.GameManager;
 public class EnemyShip extends Actor {
 
     private Animation<TextureRegion> skin;
+    private float x;
+    private float y;
 
-    // Las constantes están definidas en los managers.
-    public EnemyShip() {
+    public EnemyShip(float posX,float posY) {
         super();
-        TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("images/enemy.pack"));
-        skin = new Animation<TextureRegion>(0.25f, atlas.findRegions("green_enemy"), Animation.PlayMode.LOOP);
-        //                                      Settings                        Assets
+        TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("sp2.atlas"));
+        skin = new Animation<TextureRegion>(2.0f, atlas.findRegions("ovni"), Animation.PlayMode.LOOP);
+        x = posX;
+        y = posY;
+
     }
+
     @Override
     public void draw(Batch batch, float parentAlpha) {
         super.draw(batch, parentAlpha);
         TextureRegion currentFrame = skin.getKeyFrame(GameManager.getSingleton().getGameTime(), true);
-        batch.draw(currentFrame, this.getX(), this.getY());
-        //                      + tamaño (como parte de Settings, Enemies_Size)
+        batch.draw(currentFrame, x, y, 50,  50);
     }
+
 }
