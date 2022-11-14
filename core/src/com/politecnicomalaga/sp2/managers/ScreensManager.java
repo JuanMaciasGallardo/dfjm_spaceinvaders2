@@ -13,7 +13,7 @@ public class ScreensManager {
     private ScreensManager () {
     }
     //SINGLETON OF THE CLASS
-    public static ScreensManager getSingeton(){
+    public static ScreensManager getSingleton(){
         if (singleton == null) {
             singleton = new ScreensManager();
         }
@@ -22,7 +22,6 @@ public class ScreensManager {
     public Screen getScreen(Game game, Screens screen) {
         Screen activeScreen = null;
 
-        ScreenUtils.clear(0, 0, 0, 1);
         switch (screen) {
             case START: ;
                 break;

@@ -7,6 +7,7 @@ public class GameManager {
     private float gameTime;
     private static GameManager singleton;
 
+    private GameManager() {}
 
     public static GameManager getSingleton() {
         if (singleton == null) {
