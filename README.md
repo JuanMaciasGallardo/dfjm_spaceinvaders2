@@ -2,6 +2,11 @@
 ## Cambios
 ###### 2022/11/08
 Subida del proyecto. Sincronización con los equipos clientes.
+Asignación de las clases:
+- ***David:*** `AssetsManager`, `SettingsManager`, `GameManager`,  `GdxSpaceInvaders2` -> rama `dmanager`
+- ***Felipe:*** `ScreenManager` -> rama `fscreen`
+- ***Juan:*** `PlayerSpaceship` -> rama  `jplayer`
+- ***Miguel:*** `Squadroon`, `Battalion`, `EnemyShip` -> rama `menemy`
 
 ###### 2022/11/09
 - ***David:*** realización de las clases `GameManager`, `AssetsManager` y `SettingsManager` y 
