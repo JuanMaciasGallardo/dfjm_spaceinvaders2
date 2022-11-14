@@ -2,44 +2,38 @@ package com.politecnicomalaga.sp2.managers;
 
 
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.politecnicomalaga.sp2.view.GameScreen;
 
-public class ScreensManager extends ScreenAdapter {
-    // Programar clase
-    private Screens activeScreen;
+public class ScreensManager {
+    // VARAIBLES
     public enum Screens {START, PLAYING, END};
-    private GameScreen gs;
-
-    public ScreensManager (Game game, Screens screen) {
-
-        gs = new GameScreen(game);
-        activeScreen=screen;
-
+    private static ScreensManager singleton;
+    private ScreensManager () {
     }
+    //SINGLETON OF THE CLASS
+    public static ScreensManager getSingeton(){
+        if (singleton == null) {
+            singleton = new ScreensManager();
+        }
+        return singleton;
+    }
+    public Screen getScreen(Game game, Screens screen) {
+        Screen activeScreen = null;
 
-
-    @Override
-    public void render(float delta) {
         ScreenUtils.clear(0, 0, 0, 1);
-        switch (activeScreen) {
+        switch (screen) {
             case START: ;
                 break;
-            case PLAYING: gs.render(delta);
+            case PLAYING: activeScreen= new GameScreen(game);
                 break;
             case END: ;
                 break;
+                // DEFAULT WILL BE SPLASH SCREEN IN THE NEXT VERSION
+            default: activeScreen= new GameScreen(game);
         }
-    }
 
-    public void changeScreen(Screens screen){
-        activeScreen= screen;
-    }
-
-
-    @Override
-    public void dispose () {
-        gs.dispose();
+        return activeScreen;
     }
 }
