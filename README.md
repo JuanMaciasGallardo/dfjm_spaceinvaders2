@@ -3,10 +3,10 @@
 ###### 2022/11/08
 Subida del proyecto. Sincronización con los equipos clientes.
 Asignación de las clases:
-- ***David:*** `AssetsManager`, `SettingsManager`, `GameManager`,  `GdxSpaceInvaders2` -> rama `dmanager`
-- ***Felipe:*** `ScreenManager` -> rama `fscreen`
-- ***Juan:*** `PlayerSpaceship` -> rama  `jplayer`
-- ***Miguel:*** `Squadroon`, `Battalion`, `EnemyShip` -> rama `menemy`
+- ***David:*** `AssetsManager`, `SettingsManager`, `GameManager`,  `GdxSpaceInvaders2` -> rama `david`
+- ***Felipe:*** `ScreenManager` -> rama `felipe`
+- ***Juan:*** `PlayerSpaceship` -> rama  `juan`
+- ***Miguel:*** `Squadroon`, `Battalion`, `EnemyShip` -> rama `miguel`
 
 ###### 2022/11/09
 - ***David:*** realización de las clases `GameManager`, `AssetsManager` y `SettingsManager` y 
@@ -41,3 +41,9 @@ actual. Migración de la rama ***fscreen*** a la ***master***.
 
 ###### 2022/11/15
 - ***Juan:*** Subido el arreglo al error de las animaciones de los enemigos.
+
+Asignación de clases para nuevo *sprint*:
+- ***David:*** `GameOverScreen`, `HeroBullet`+ -> rama `david`
+- ***Felipe:*** `SettingsScreen`, `CreditsScreen` -> rama `felipe`
+- ***Juan:*** `LanguageManager` -> rama  `juan`
+- ***Miguel:*** `SplashScreen`, crear Atlas con disparos -> rama `miguel`
