@@ -43,7 +43,8 @@ actual. Migración de la rama ***fscreen*** a la ***master***.
 - ***Juan:*** Subido el arreglo al error de las animaciones de los enemigos.
 
 Asignación de clases para nuevo *sprint*:
-- ***David:*** `GameOverScreen`, `HeroBullet`+ -> rama `david`
-- ***Felipe:*** `SettingsScreen`, `CreditsScreen` -> rama `felipe`
-- ***Juan:*** `LanguageManager` -> rama  `juan`
-- ***Miguel:*** `SplashScreen`, crear Atlas con disparos -> rama `miguel`
+- ***David:*** `GameOverScreen`+, `HeroBullet`+ **+** `GUISettings`+ -> rama `david`
+- ***Felipe:*** `SettingsScreen`+, `CreditsScreen`+ -> rama `felipe`
+- ***Juan:*** `LanguageManager`+, `GameScreen` -> rama  `juan`
+- ***Miguel:*** `SplashScreen`+, crear Atlas con disparos -> rama `miguel`
+* *Un más («+») pegada a la clase por detrás significa que es una clase nueva.*
