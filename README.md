@@ -38,3 +38,6 @@ de clases.
 
 - ***Felipe:*** Clase `ScreenManager` actualizada para satisfacer los requisitos del sprint.
 actual. Migración de la rama ***fscreen*** a la ***master***.
+
+###### 2022/11/15
+- ***Juan:*** Subido el arreglo al error de las animaciones de los enemigos.
