@@ -17,7 +17,11 @@ public class GameManager {
     }//GETSINGLETON
 
     public float getGameTime() {
-        gameTime += Gdx.graphics.getDeltaTime();
         return gameTime;
     }//GETGAMETIME
+
+    public float addDelta() {
+        gameTime += Gdx.graphics.getDeltaTime();
+        return gameTime;
+    }//ADDDELTA
 }//CLASS
