@@ -4,7 +4,13 @@ package com.politecnicomalaga.sp2.managers;
 // CONSTANTS //
 ///////////////
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+
 public class AssetsManager {
+
+    // VARIABLES
+    private static Skin skin;
 
     // SPRITE
     public static final String NUMBERS_SPRITES ="numbers/digito";
@@ -29,5 +35,13 @@ public class AssetsManager {
     public static final String DIGIT_PATH ="numbers/";
     public static final String DIGIT_NAME ="digito";
     public static final String DIGIT_EXT =".png";
+
+    // RETURNS THE SKIN FOR LABELS, BUTTONS...
+    public static Skin getTextSkin() {
+        if (skin == null) {
+            skin = new Skin(Gdx.files.internal("skin/glassy-ui.json"));
+        }//IF
+        return skin;
+    }//GETTEXTSKIN
 
 }//CLASS

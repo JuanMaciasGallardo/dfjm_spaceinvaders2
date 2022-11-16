@@ -1,12 +1,17 @@
-# Space Invaders 2 by Kartoffel Studios
+# Space Invaders 2 *by Kartoffel Studios*
+
 ## Cambios
-###### 2022/11/08
-Subida del proyecto. Sincronización con los equipos clientes.
+
+#### Sprint I
+
 Asignación de las clases:
 - ***David:*** `AssetsManager`, `SettingsManager`, `GameManager`,  `GdxSpaceInvaders2` -> rama `david`
 - ***Felipe:*** `ScreenManager` -> rama `felipe`
 - ***Juan:*** `PlayerSpaceship` -> rama  `juan`
 - ***Miguel:*** `Squadroon`, `Battalion`, `EnemyShip` -> rama `miguel`
+
+###### 2022/11/08
+Subida del proyecto. Sincronización con los equipos clientes.
 
 ###### 2022/11/09
 - ***David:*** realización de las clases `GameManager`, `AssetsManager` y `SettingsManager` y 
@@ -39,12 +44,21 @@ de clases.
 - ***Felipe:*** Clase `ScreenManager` actualizada para satisfacer los requisitos del sprint.
 actual. Migración de la rama ***fscreen*** a la ***master***.
 
-###### 2022/11/15
-- ***Juan:*** Subido el arreglo al error de las animaciones de los enemigos.
+#### Sprint II
 
 Asignación de clases para nuevo *sprint*:
-- ***David:*** `GameOverScreen`+, `HeroBullet`+ **+** `GUISettings`+ -> rama `david`
+- ***David:*** `GameOverScreen`+, `HeroBullet`+ **+** `GUISettings`+ `PlayerSpaceShip` -> rama `david`
 - ***Felipe:*** `SettingsScreen`+, `CreditsScreen`+ -> rama `felipe`
-- ***Juan:*** `LanguageManager`+, `GameScreen` -> rama  `juan`
+- ***Juan:*** `LanguageManager`+, `AssetsManager` -> rama  `juan`
 - ***Miguel:*** `SplashScreen`+, crear Atlas con disparos -> rama `miguel`
-* *Un más («+») pegada a la clase por detrás significa que es una clase nueva.*
+* *Un más («+») pegado a la clase por detrás significa que es una clase nueva.*
+
+###### 2022/11/15
+- ***Juan:*** Subido el arreglo al error de las animaciones de los enemigos.
+- ***David:*** Estructura de las clases definida, clase `GameOverScreen` a poco de terminarse.
+- ***Miguel:*** Problemas con la búsqueda de imágenes para los disparos del Atlas.
+
+###### 2022/11/16
+- ***Miguel:*** `SplashScreen` iniciado. Toques *strings* y otras cosas. Complicaciones para
+encontrar imágenes para el Atlas.
+
