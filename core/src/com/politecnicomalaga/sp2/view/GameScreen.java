@@ -41,11 +41,19 @@ public class GameScreen implements Screen {
         heroShip = new PlayerSpaceShip();
         stage.addActor(heroShip);
 
+        // EVENTS FOR THE PLAYER
         heroShip.addListener(new InputListener() {
 
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                heroShip.canShoot(true);
+
                 return true;
+            }//EVENT
+
+            @Override
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+                heroShip.canShoot(false);
             }//EVENT
 
             // CHANGE THE X OF THE PLAYER
@@ -54,11 +62,6 @@ public class GameScreen implements Screen {
                 heroShip.setX(Gdx.input.getX() - SettingsManager.PLAYER_SIZE/2);
                 //heroShip.setY(SettingsManager.SCREEN_HEIGHT - Gdx.input.getY() - SettingsManager.PLAYER_SIZE/2);
             }//EVENT
-
-            /*
-            public void clicked(InputEvent event, float x, float y, int pointer, int button) { }//EVENT
-            @Override public void touchUp(InputEvent event, float x, float y, int pointer, int button) { }//EVENT
-            */
         });
         heroShip.setTouchable(Touchable.enabled);
     }//Constructor
@@ -74,6 +77,8 @@ public class GameScreen implements Screen {
 
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        // PAINT ACTORS
         stage.act(delta);
         stage.draw();
     }//RENDER

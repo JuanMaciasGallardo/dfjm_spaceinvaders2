@@ -17,6 +17,7 @@ public class SettingsManager {
     public static final short ENEMY_SIZE = 32;
     public static final short PLAYER_HOR_POS = SCREEN_MID_WIDTH;
     public static final short PLAYER_VER_POS = 5;
+    public static final float PLAYER_SHOOT_TIME = 0.5f;
 
     // SQUAD
     public static final short BATTALION_SIZE = 8;
@@ -24,7 +25,6 @@ public class SettingsManager {
 
     // ANIMATION
     public static final float PLAYER_ANIMATION_TIME = 0.25f;
-    public static final float ENEMY_ANIMATION_TIME = 2.0f;
-
+    public static final float ENEMY_ANIMATION_TIME = 0.5f;
 
 }//CLASS
