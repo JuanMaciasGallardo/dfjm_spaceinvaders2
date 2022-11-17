@@ -21,7 +21,7 @@ public class PlayerSpaceShip extends Actor {
 
     private float deltaBullet;
 
-    private boolean canShoot;
+    private boolean isShooting;
 
 
     public PlayerSpaceShip() {
@@ -39,29 +39,39 @@ public class PlayerSpaceShip extends Actor {
         inactiveBullets = new Stack<HeroBullet>();
     }//PLAYERSPACESHIP
 
-    public boolean canShoot() {
-        return canShoot;
-    }//CANSHOOT
-
     public void canShoot(boolean canShoot) {
-        this.canShoot = canShoot;
+        isShooting = canShoot;
     }//CANSHOOT
 
     public void shoot() {
         if (inactiveBullets.size() == 0) {
             activeBullets.add(new HeroBullet(this));
         } else {
-            HeroBullet newBullet = inactiveBullets.pop();
-            newBullet.resetPos();
-            activeBullets.add(newBullet);
+            transferBullet();
         }//IF
     }//SHOOT
+
+    public Array<HeroBullet> getBullets() {
+        return activeBullets;
+    }//GETBULLETS
+
+    private void transferBullet(int pos) {
+        HeroBullet newBullet = activeBullets.get(pos);
+        activeBullets.removeIndex(pos);
+        inactiveBullets.push(newBullet);
+    }//TRANSFERBULLET
+
+    private void transferBullet() {
+        HeroBullet newBullet = inactiveBullets.pop();
+        newBullet.resetPos();
+        activeBullets.add(newBullet);
+    }//TRANSFERBULLET
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
         // CHECK WHEN THE PLAYER CAN SHOOT
-        if (canShoot()) {
-            if (deltaBullet+SettingsManager.PLAYER_SHOOT_TIME < GameManager.getSingleton().getGameTime()) {
+        if (isShooting) {
+            if (deltaBullet+SettingsManager.BULLET_RATIO < GameManager.getSingleton().getGameTime()) {
                 deltaBullet = GameManager.getSingleton().getGameTime();
                 shoot();
             }//IF
@@ -70,9 +80,7 @@ public class PlayerSpaceShip extends Actor {
         // TO TRANSFER BULLETS
         for (int f=0; f<activeBullets.size; f++) {
             if (activeBullets.get(f).getY() > SettingsManager.SCREEN_HEIGHT) {
-                HeroBullet newBullet = activeBullets.get(f);
-                activeBullets.removeIndex(f);
-                inactiveBullets.push(newBullet);
+                transferBullet(f);
             } else {
                 break;
             }//IF
@@ -80,7 +88,7 @@ public class PlayerSpaceShip extends Actor {
 
         // PAINT
         for (int f=0; f<activeBullets.size; f++) {
-            activeBullets.get(f).setY(activeBullets.get(f).getY()+2);
+            activeBullets.get(f).setY(activeBullets.get(f).getY()+SettingsManager.BULLET_SPEED);
             activeBullets.get(f).draw(batch, parentAlpha);
         }//FOR
 

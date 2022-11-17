@@ -11,18 +11,21 @@ import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.politecnicomalaga.sp2.managers.SettingsManager;
 import com.politecnicomalaga.sp2.model.Battalion;
+import com.politecnicomalaga.sp2.model.EnemyShip;
+import com.politecnicomalaga.sp2.model.HeroBullet;
 import com.politecnicomalaga.sp2.model.PlayerSpaceShip;
+import com.politecnicomalaga.sp2.model.Squadron;
 
 /**
  * GameScreen Class. Where we play the game and we have the main battle
  * Created by Andrés Alcaraz Rey on 5/11/2022.
- *
  */
 public class GameScreen implements Screen {
 
     private Stage stage;
     private Game game;
 
+    private Battalion empire;
     private PlayerSpaceShip heroShip;
 
 
@@ -34,7 +37,7 @@ public class GameScreen implements Screen {
         Gdx.input.setInputProcessor(stage);
 
         // ADD THE BATTALION
-        Battalion empire = new Battalion(stage);
+        empire = new Battalion(stage);
         empire.addActors();
 
         // ADD PLAYER WITH EVENTS
@@ -77,6 +80,41 @@ public class GameScreen implements Screen {
 
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        // CHECK COLLISIONS
+        out:
+        // FOR OF BULLETS
+        for (int f=0; f<heroShip.getBullets().size; f++) {
+            HeroBullet bullet = heroShip.getBullets().get(f);
+
+            // FOR OF SQUADS
+            for (int d=0; d<empire.getSquads().size; d++) {
+                Squadron sq = empire.getSquads().get(d);
+
+                // IF IS NEAR OF THE SQUAD
+                if (sq.getTroops().get(0).getY() - bullet.getHeight() < bullet.getY()) {
+                    // FOR OF TROOPS
+                    for (int c=0; c<sq.getTroops().size; c++) {
+                        EnemyShip enemy = sq.getTroops().get(c);
+
+                        // IF COLLISION
+                        if (enemy.isColliding(bullet)) {
+                            heroShip.getBullets().removeIndex(f);
+                            bullet.remove();
+
+                            sq.getTroops().removeIndex(c);
+                            enemy.remove();
+
+                            if (empire.getSquads().get(d).getTroops().size == 0) {
+                                empire.getSquads().removeIndex(d);
+                            }//IF
+                        }//IF
+                    }//FOR
+                } else {
+                    break out;
+                }//IF
+            }//FOR
+        }//FOR
 
         // PAINT ACTORS
         stage.act(delta);

@@ -17,11 +17,14 @@ public class SettingsManager {
     public static final short ENEMY_SIZE = 32;
     public static final short PLAYER_HOR_POS = SCREEN_MID_WIDTH;
     public static final short PLAYER_VER_POS = 5;
-    public static final float PLAYER_SHOOT_TIME = 0.5f;
 
     // SQUAD
     public static final short BATTALION_SIZE = 8;
-    public static final short SQUAD_SIZE = 10;
+    public static final short SQUAD_SIZE = 4;
+
+    // SHOT
+    public static final byte BULLET_SPEED = 10;
+    public static final float BULLET_RATIO = 0.25f;
 
     // ANIMATION
     public static final float PLAYER_ANIMATION_TIME = 0.25f;

@@ -35,10 +35,10 @@ public class GameOverScreen implements Screen {
         Gdx.input.setInputProcessor(stage);
 
         // CREATE A TYPINGLABELs
-        Label textPlay = createLabel(GUISettings.TEXT_PLAY, GUISettings.COLOR_PLAY, 0, 60);
-        Label textGameName = createLabel(GUISettings.TEXT_GAMENAME, GUISettings.COLOR_GAME_NAME, 0, (int) textPlay.getY() - 60);
-        Label textCorporationName = createLabel(GUISettings.TEXT_CORPORATION_GAME, GUISettings.COLOR_CORPORATION_GAME, 0, -190);
-        Label textScore = createLabel(GUISettings.TEXT_CREDIT, GUISettings.COLOR_CREDIT, 160, -250);
+        Label textPlay = createLabel("PLAY", GUISettings.COLOR_PLAY, 0, 60);
+        Label textGameName = createLabel("SPACE     INVADERS", GUISettings.COLOR_GAME_NAME, 0, (int) textPlay.getY() - 60);
+        Label textCorporationName = createLabel("$ KARTOFFEL STUDIOS", GUISettings.COLOR_CORPORATION_GAME, 0, -190);
+        Label textScore = createLabel("CREDIT", GUISettings.COLOR_CREDIT, 160, -250);
         Label textScoreValue = createLabel("0", GUISettings.COLOR_CREDIT_VALUE, (int) textScore.getX() + 130, (int) textScore.getY());
 
         // ADD THE LABELs TO THE STAGE

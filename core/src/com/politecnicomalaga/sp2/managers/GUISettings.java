@@ -12,11 +12,6 @@ import com.badlogic.gdx.graphics.Color;
 public class GUISettings {
 
     // GAME OVER SCREEN
-    public static final String TEXT_PLAY ="PLAY";
-    public static final String TEXT_GAMENAME ="SPACE     INVADERS";
-    public static final String TEXT_CORPORATION_GAME ="$ KARTOFFEL STUDIOS";
-    public static final String TEXT_CREDIT ="CREDIT";
-
     public static final Color COLOR_PLAY = Color.GREEN;
     public static final Color COLOR_GAME_NAME = Color.GREEN;
     public static final Color COLOR_CORPORATION_GAME = Color.CYAN;
