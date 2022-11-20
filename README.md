@@ -47,7 +47,7 @@ actual. Migración de la rama ***fscreen*** a la ***master***.
 #### Sprint II
 
 Asignación de clases para nuevo *sprint*:
-- ***David:*** `GameOverScreen`+, `HeroBullet`+ **+** `GUISettings`+ `PlayerSpaceShip` -> rama `david`
+- ***David:*** `GameOverScreen`+, `HeroBullet`+ **+** `GUISettings`+, `PlayerSpaceShip`, `GameScreen`, `EnemyShip` -> rama `david`
 - ***Felipe:*** `SettingsScreen`+, `CreditsScreen`+ -> rama `felipe`
 - ***Juan:*** `LanguageManager`+, `AssetsManager` -> rama  `juan`
 - ***Miguel:*** `SplashScreen`+, crear Atlas con disparos -> rama `miguel`
@@ -61,4 +61,10 @@ Asignación de clases para nuevo *sprint*:
 ###### 2022/11/16
 - ***Miguel:*** `SplashScreen` iniciado. Toques *strings* y otras cosas. Complicaciones para
 encontrar imágenes para el Atlas.
+- ***David:*** `HeroBuller` y `GUISettings` mayormente terminadas. `PlayerSpaceShip` ya dispara.
+- ***Juan:*** Clase `AssetsManager` modificada, `LanguageManager` empezada.
+
+###### 2022/11/17
+- ***Felipe:*** Empezadas clases `SettingsScreen` y `CreditsScreen`.
+- ***Juan:*** *Skin* del *UI* cambiado. `LanguageManager` modificado con nuevos textos.
 
