@@ -4,7 +4,14 @@ package com.politecnicomalaga.sp2.managers;
 // CONSTANTS //
 ///////////////
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+
 public class AssetsManager {
+
+    // VARIABLES
+    private static Skin skin;
+    private static AssetsManager singleton;
 
     // SPRITE
     public static final String NUMBERS_SPRITES ="numbers/digito";
@@ -29,5 +36,24 @@ public class AssetsManager {
     public static final String DIGIT_PATH ="numbers/";
     public static final String DIGIT_NAME ="digito";
     public static final String DIGIT_EXT =".png";
+
+    // CONSTRUCTOR
+    private AssetsManager() {}
+
+    // RETURNS SINGLETON.
+    public static AssetsManager getSingleton() {
+        if (singleton == null) {
+            singleton = new AssetsManager();
+        }
+        return singleton;
+    } //GETSINGLETON
+
+    // RETURNS THE SKIN FOR LABELS, BUTTONS...
+    public Skin getTextSkin() {
+        if (skin == null) {
+            skin = new Skin(Gdx.files.internal("skin/pixthulhu-ui.json"));
+        }//IF
+        return skin;
+    }//GETTEXTSKIN
 
 }//CLASS
