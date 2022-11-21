@@ -4,8 +4,10 @@ package com.politecnicomalaga.sp2.managers;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.politecnicomalaga.sp2.view.CreditsScreen;
 import com.politecnicomalaga.sp2.view.GameOverScreen;
 import com.politecnicomalaga.sp2.view.GameScreen;
+import com.politecnicomalaga.sp2.view.SettingsScreen;
 import com.politecnicomalaga.sp2.view.SplashScreen;
 
 public class ScreensManager {
@@ -15,7 +17,7 @@ public class ScreensManager {
     private ScreensManager () {
     }
     //SINGLETON OF THE CLASS
-    public static ScreensManager getSingeton(){
+    public static ScreensManager getSingleton(){
         if (singleton == null) {
             singleton = new ScreensManager();
         }
@@ -32,9 +34,9 @@ public class ScreensManager {
                 break;
             case GAMEOVER: activeScreen= new GameOverScreen(game);
                 break;
-            case SETTINGS:
+            case SETTINGS: activeScreen = new SettingsScreen(game);
                 break;
-            case CREDITS:
+            case CREDITS: activeScreen = new CreditsScreen(game);
                 break;
                 // DEFAULT WILL BE SPLASH SCREEN IN THE NEXT VERSION
             default: activeScreen= new SplashScreen(game);

@@ -10,6 +10,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.politecnicomalaga.sp2.managers.AssetsManager;
+import com.politecnicomalaga.sp2.managers.LanguageManager;
 import com.politecnicomalaga.sp2.managers.ScreensManager;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -18,8 +20,17 @@ public class CreditsScreen implements Screen {
     private Stage stage;
     private Game game;
 
-    private String JUAN="Juan Macias Gallardo", MIGUEL="Miguel Pina Guerrero", DAVID = "David Montiel Nieto", FELIPE="Felipe Gonzalez Villablanca",
-            KOJIMA="Hideo Kojima", CTHULHU="Cthulhu", ENTERPRISE="Kartoffel Studios", JUNIT="JUnit",TEACHER="Andres Alcaraz Rey";
+    private String JUAN="Juan Macias Gallardo",
+            MIGUEL="Miguel Pina Guerrero",
+            DAVID = "David Montiel Nieto",
+            FELIPE="Felipe Gonzalez Villablanca",
+            KOJIMA="Hideo Kojima",
+            CTHULHU="Cthulhu",
+            ENTERPRISE="Kartoffel Studios",
+            JUNIT="JUnit",
+            TEACHER="Andres Alcaraz Rey";
+
+
     public CreditsScreen(Game agame){
         //STRINGS WITH EACH ONE NAME
 
@@ -49,17 +60,14 @@ public class CreditsScreen implements Screen {
         Label lChulhu;
 
         //BUTTON
-        Skin skin = new Skin(Gdx.files.internal("skin/uiskin.json"));
+        Skin skin = AssetsManager.getSingleton().getTextSkin();
 
         stage = new Stage(new ScreenViewport());
         game=agame;
         Gdx.input.setInputProcessor(stage);
 
         //Labels
-
-
-        //LanguageManager.getSingleton().getString(LanguageManager.lCredits)
-        lCredits = new Label("Creditos", skin);
+        lCredits = new Label(LanguageManager.getSingleton().getString(LanguageManager.LBL_CREDITS_ID), skin);
         lCredits.setFontScale(1.5f);
         lCredits.setAlignment(Align.center);
         lCredits.setY(stage.getHeight()-lCredits.getHeight()*2);
@@ -71,7 +79,7 @@ public class CreditsScreen implements Screen {
         lEnterprise.setY(stage.getHeight()-lEnterprise.getHeight()*3.5f);
         lEnterprise.setWidth(stage.getWidth());
 
-        lJUnitSupremeLider = new Label("JUnit Supreme Lider",skin);
+        lJUnitSupremeLider = new Label(LanguageManager.getSingleton().getString(LanguageManager.LBL_LEADER_ID),skin);
         lJUnitSupremeLider.setFontScale(1.1f);
         lJUnitSupremeLider.setAlignment(Align.center);
         lJUnitSupremeLider.setY(stage.getHeight()-lEnterprise.getHeight()*5f);
@@ -87,7 +95,7 @@ public class CreditsScreen implements Screen {
         lHideoKojima1.setY(stage.getHeight()-lEnterprise.getHeight()*7.25f);
         lHideoKojima1.setWidth(stage.getWidth());
 
-        lJUnitGigaChad = new Label("JUnit GigaChad", skin);
+        lJUnitGigaChad = new Label(LanguageManager.getSingleton().getString(LanguageManager.LBL_WORKER_ID), skin);
         lJUnitGigaChad.setFontScale(1.1f);
         lJUnitGigaChad.setAlignment(Align.center);
         lJUnitGigaChad.setY(stage.getHeight()-lEnterprise.getHeight()*8.5f);
@@ -113,7 +121,7 @@ public class CreditsScreen implements Screen {
         lHideoKojima2.setY(stage.getHeight()-lEnterprise.getHeight()*12.75f);
         lHideoKojima2.setWidth(stage.getWidth());
 
-        lHonorableMentions = new Label("Honorable Mentions", skin);
+        lHonorableMentions = new Label(LanguageManager.getSingleton().getString(LanguageManager.LBL_HONOURS_ID), skin);
         lHonorableMentions.setFontScale(1.1f);
         lHonorableMentions.setAlignment(Align.center);
         lHonorableMentions.setY(stage.getHeight()-lEnterprise.getHeight()*14);
@@ -124,7 +132,7 @@ public class CreditsScreen implements Screen {
         lJunit.setY(stage.getHeight()-lEnterprise.getHeight()*15.25f);
         lJunit.setWidth(stage.getWidth());
 
-        lPotato = new Label("Potato", skin);
+        lPotato = new Label(LanguageManager.getSingleton().getString(LanguageManager.LBL_POTATO_ID), skin);
         lPotato.setAlignment(Align.center);
         lPotato.setY(stage.getHeight()-lEnterprise.getHeight()*16.25f);
         lPotato.setWidth(stage.getWidth());
@@ -167,7 +175,7 @@ public class CreditsScreen implements Screen {
         stage.addListener(new InputListener(){
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-                game.setScreen(ScreensManager.getSingeton().getScreen(game, ScreensManager.Screens.START));
+                game.setScreen(ScreensManager.getSingleton().getScreen(game, ScreensManager.Screens.SPLASH));
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {

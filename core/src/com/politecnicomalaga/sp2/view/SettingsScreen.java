@@ -10,6 +10,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.politecnicomalaga.sp2.managers.AssetsManager;
+import com.politecnicomalaga.sp2.managers.LanguageManager;
 import com.politecnicomalaga.sp2.managers.ScreensManager;
 
 
@@ -23,18 +25,21 @@ public class SettingsScreen implements Screen {
         stage = new Stage(new ScreenViewport());
         game=agame;
         Gdx.input.setInputProcessor(stage);
+
         //LABELS
         Label lSettings;
-        Skin skin = new Skin(Gdx.files.internal("skin/uiskin.json"));
+        Skin skin = AssetsManager.getSingleton().getTextSkin();
+
         //LanguageManager.getSingleton().getString(LanguageManager.lCredits)
-        lSettings = new Label("Settings", skin);
+        lSettings = new Label(LanguageManager.getSingleton().getString(LanguageManager.BTN_CONFIG_ID), skin);
         lSettings.setAlignment(Align.center);
         lSettings.setY(stage.getHeight()-lSettings.getHeight()*2);
         lSettings.setWidth(stage.getWidth());
+
         //BUTTONS
-        TextButton bSpanish= new TextButton("Spanish",skin);
+        TextButton bSpanish= new TextButton("Espaniol",skin);
         TextButton bEnglish= new TextButton("English",skin);
-        TextButton bGerman= new TextButton("German",skin);
+        TextButton bGerman= new TextButton("Deutsch",skin);
 
         stage.addActor(lSettings);
         stage.addActor(bEnglish);
@@ -43,16 +48,18 @@ public class SettingsScreen implements Screen {
 
 
         //BUTTONS FUNCTIONS
-
-
-
         bSpanish.setWidth(stage.getWidth()/2);
-        float buttonsWidth= stage.getWidth()/2-bSpanish.getWidth()/2;
-        bSpanish.setPosition(buttonsWidth,stage.getHeight()-bSpanish.getHeight()*4);
+
+        float btnX= Gdx.graphics.getWidth()/2 - bSpanish.getWidth()/2.5f;
+        float btnWidth = stage.getWidth()/2;
+
+        bSpanish.setWidth(btnWidth);
+        bSpanish.setPosition(btnX,stage.getHeight()-bSpanish.getHeight()*2);
         bSpanish.addListener(new InputListener(){
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-               //LanguageManager.getSingleton().setActiveLanguage(LanguageManager.Screens.SPANISH);
+                changeLang(LanguageManager.Languages.SPANISH);
+                game.setScreen(ScreensManager.getSingleton().getScreen(game, ScreensManager.Screens.SPLASH));
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
@@ -60,14 +67,14 @@ public class SettingsScreen implements Screen {
             }
         });
 
-        bEnglish.setWidth(stage.getWidth()/2);
-        bEnglish.setPosition(buttonsWidth,stage.getHeight()-bSpanish.getHeight()*8);
+        bEnglish.setWidth(btnWidth);
+        bEnglish.setPosition(btnX,stage.getHeight()-bEnglish.getHeight()*3);
 
         bEnglish.addListener(new InputListener(){
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-                //LanguageManager.getSingleton().setActiveLanguage(LanguageManager.Screens.ENGLISH);
-
+                changeLang(LanguageManager.Languages.ENGLISH);
+                game.setScreen(ScreensManager.getSingleton().getScreen(game, ScreensManager.Screens.SPLASH));
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
@@ -75,14 +82,14 @@ public class SettingsScreen implements Screen {
             }
         });
 
-
-        bGerman.setWidth(stage.getWidth()/2);
-        bGerman.setPosition(buttonsWidth,stage.getHeight()-bSpanish.getHeight()*12);
+        bGerman.setWidth(btnWidth);
+        bGerman.setPosition(btnX,stage.getHeight()-bGerman.getHeight()*4);
 
         bGerman.addListener(new InputListener(){
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-                //LanguageManager.getSingleton().setActiveLanguage(LanguageManager.Screens.GERMAN);
+                changeLang(LanguageManager.Languages.GERMAN);
+                game.setScreen(ScreensManager.getSingleton().getScreen(game, ScreensManager.Screens.SPLASH));
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
@@ -90,7 +97,19 @@ public class SettingsScreen implements Screen {
             }
         });
 
+        bSpanish.setTransform(true);
+        bEnglish.setTransform(true);
+        bGerman.setTransform(true);
+
+        bSpanish.setScale(0.75f);
+        bEnglish.setScale(0.75f);
+        bGerman.setScale(0.75f);
+
     }
+
+    private void changeLang(LanguageManager.Languages lang) {
+        LanguageManager.getSingleton().setActiveLanguage(lang);
+    }//CHANGELANG
 
 
 

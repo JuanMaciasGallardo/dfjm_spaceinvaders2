@@ -17,6 +17,7 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.politecnicomalaga.sp2.managers.AssetsManager;
 import com.politecnicomalaga.sp2.managers.GUISettings;
 import com.politecnicomalaga.sp2.managers.LanguageManager;
+import com.politecnicomalaga.sp2.managers.ScreensManager;
 import com.politecnicomalaga.sp2.managers.SettingsManager;
 
 /**
@@ -63,7 +64,7 @@ public class GameOverScreen implements Screen {
 
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                // ADD GOTO OTHER SCREEN
+                game.setScreen(ScreensManager.getSingleton().getScreen(game, ScreensManager.Screens.SPLASH));
             }//EVENT
         });
     }//Constructor

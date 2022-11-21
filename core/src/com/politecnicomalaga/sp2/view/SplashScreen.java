@@ -14,6 +14,7 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.politecnicomalaga.sp2.GdxSpaceInvaders2;
 import com.politecnicomalaga.sp2.managers.AssetsManager;
+import com.politecnicomalaga.sp2.managers.LanguageManager;
 import com.politecnicomalaga.sp2.managers.ScreensManager;
 //import com.politecnicomalaga.sp2.managers.LanguageManager;
 
@@ -33,22 +34,22 @@ public class SplashScreen implements Screen {
         Gdx.input.setInputProcessor(stage);
 
         // LABEL
-        Label title = new Label("SPACE INVADERS", skin);
+        Label title = new Label(LanguageManager.getSingleton().getString(LanguageManager.LBL_GAME_NAME_ID), skin);
         title.setAlignment(Align.center);
         title.setY(Gdx.graphics.getHeight()-title.getHeight()*2);
         title.setWidth(Gdx.graphics.getWidth());
         title.setFontScale(2);
 
         // BUTTONs
-        TextButton playButton = new TextButton("PLAY", skin);
+        TextButton playButton = new TextButton(LanguageManager.getSingleton().getString(LanguageManager.LBL_PLAY_ID), skin);
         playButton.setWidth(Gdx.graphics.getWidth()/2);
         playButton.setPosition(stage.getWidth()/2 - playButton.getWidth()/2.5f,stage.getHeight()/2 + playButton.getHeight()/2.5f);
 
-        TextButton settingsButton = new TextButton("SETTINGS", skin);
+        TextButton settingsButton = new TextButton(LanguageManager.getSingleton().getString(LanguageManager.BTN_CONFIG_ID), skin);
         settingsButton.setWidth(Gdx.graphics.getWidth()/2);
         settingsButton.setPosition(stage.getWidth()/2 - settingsButton.getWidth()/2.5f,stage.getHeight()/2 - settingsButton.getHeight()/2.5f * 2);
 
-        TextButton creditsButton = new TextButton("CREDITS", skin);
+        TextButton creditsButton = new TextButton(LanguageManager.getSingleton().getString(LanguageManager.LBL_CREDITS_ID), skin);
         creditsButton.setWidth(Gdx.graphics.getWidth()/2);
         creditsButton.setPosition(stage.getWidth()/2 - creditsButton.getWidth()/2.5f,stage.getHeight()/5 - creditsButton.getHeight()/2.5f);
 
@@ -66,7 +67,7 @@ public class SplashScreen implements Screen {
         settingsButton.addListener(new InputListener(){
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-                game.setScreen(ScreensManager.getSingleton().getScreen(game, ScreensManager.Screens.GAME));
+                game.setScreen(ScreensManager.getSingleton().getScreen(game, ScreensManager.Screens.SETTINGS));
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
@@ -76,7 +77,7 @@ public class SplashScreen implements Screen {
         creditsButton.addListener(new InputListener(){
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-                game.setScreen(ScreensManager.getSingleton().getScreen(game, ScreensManager.Screens.GAME));
+                game.setScreen(ScreensManager.getSingleton().getScreen(game, ScreensManager.Screens.CREDITS));
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
