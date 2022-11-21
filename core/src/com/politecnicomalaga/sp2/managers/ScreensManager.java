@@ -15,7 +15,7 @@ public class ScreensManager {
     private ScreensManager () {
     }
     //SINGLETON OF THE CLASS
-    public static ScreensManager getSingleton(){
+    public static ScreensManager getSingeton(){
         if (singleton == null) {
             singleton = new ScreensManager();
         }
