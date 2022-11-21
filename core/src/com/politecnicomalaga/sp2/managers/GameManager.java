@@ -7,6 +7,7 @@ public class GameManager {
     private float gameTime;
     private static GameManager singleton;
 
+    private GameManager() {}
 
     public static GameManager getSingleton() {
         if (singleton == null) {
@@ -16,7 +17,11 @@ public class GameManager {
     }//GETSINGLETON
 
     public float getGameTime() {
-        gameTime += Gdx.graphics.getDeltaTime();
         return gameTime;
     }//GETGAMETIME
+
+    public float addDelta() {
+        gameTime += Gdx.graphics.getDeltaTime();
+        return gameTime;
+    }//ADDDELTA
 }//CLASS
