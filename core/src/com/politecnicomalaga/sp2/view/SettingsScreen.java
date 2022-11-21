@@ -16,35 +16,43 @@ import com.politecnicomalaga.sp2.managers.ScreensManager;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 
 public class SettingsScreen implements Screen {
-    private Stage stage;
+   private Stage stage;
     private Game game;
     public SettingsScreen(Game agame){
-        //LABELS
-        Label lSettings;
-
-        lSettings = new Label(LanguageManager.getSingleton().getString(LanguageManager.lCredits), skin);
-        lSettings.setAlignment(Align.center);
-        lSettings.setY(stage.getHeight()-lSettings.getHeight()*2);
-        lSettings.setWidth(stage.getWidth());
-        //BUTTONS
-        TextButton bSpanish = null;
-        TextButton bEnglish= null;
-        TextButton bGerman= null;
-
-        Skin skin = new Skin(Gdx.files.internal("skin/uiskin.json"));
 
         stage = new Stage(new ScreenViewport());
         game=agame;
         Gdx.input.setInputProcessor(stage);
+        //LABELS
+        Label lSettings;
+        Skin skin = new Skin(Gdx.files.internal("skin/uiskin.json"));
+        //LanguageManager.getSingleton().getString(LanguageManager.lCredits)
+        lSettings = new Label("Settings", skin);
+        lSettings.setAlignment(Align.center);
+        lSettings.setY(stage.getHeight()-lSettings.getHeight()*2);
+        lSettings.setWidth(stage.getWidth());
+        //BUTTONS
+        TextButton bSpanish= new TextButton("Spanish",skin);
+        TextButton bEnglish= new TextButton("English",skin);
+        TextButton bGerman= new TextButton("German",skin);
+
+        stage.addActor(lSettings);
+        stage.addActor(bEnglish);
+        stage.addActor(bGerman);
+        stage.addActor(bSpanish);
+
 
         //BUTTONS FUNCTIONS
+
+
+
         bSpanish.setWidth(stage.getWidth()/2);
-        bSpanish.setPosition(stage.getWidth()/2-bSpanish.getWidth()/2,stage.getHeight()-bSpanish.getHeight()*4);
-        float ScreenDivisor = stage.getHeight()/(2*bSpanish.getHeight());
+        float buttonsWidth= stage.getWidth()/2-bSpanish.getWidth()/2;
+        bSpanish.setPosition(buttonsWidth,stage.getHeight()-bSpanish.getHeight()*4);
         bSpanish.addListener(new InputListener(){
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-               LanguageManager.getSingleton().setActiveLanguage(LanguageManager.Screens.SPANISH);
+               //LanguageManager.getSingleton().setActiveLanguage(LanguageManager.Screens.SPANISH);
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
@@ -53,12 +61,12 @@ public class SettingsScreen implements Screen {
         });
 
         bEnglish.setWidth(stage.getWidth()/2);
-        bEnglish.setPosition(stage.getWidth()/2-bEnglish.getWidth()/2,stage.getHeight()/ScreenDivisor*2);
+        bEnglish.setPosition(buttonsWidth,stage.getHeight()-bSpanish.getHeight()*8);
 
         bEnglish.addListener(new InputListener(){
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-                LanguageManager.getSingleton().setActiveLanguage(LanguageManager.Screens.ENGLISH);
+                //LanguageManager.getSingleton().setActiveLanguage(LanguageManager.Screens.ENGLISH);
 
             }
             @Override
@@ -69,12 +77,12 @@ public class SettingsScreen implements Screen {
 
 
         bGerman.setWidth(stage.getWidth()/2);
-        bGerman.setPosition(stage.getWidth()/2-bEnglish.getWidth()/2,stage.getHeight()/ScreenDivisor*3);
+        bGerman.setPosition(buttonsWidth,stage.getHeight()-bSpanish.getHeight()*12);
 
         bGerman.addListener(new InputListener(){
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-                LanguageManager.getSingleton().setActiveLanguage(LanguageManager.Screens.GERMAN);
+                //LanguageManager.getSingleton().setActiveLanguage(LanguageManager.Screens.GERMAN);
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
