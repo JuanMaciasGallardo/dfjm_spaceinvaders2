@@ -21,8 +21,10 @@ public class AssetsManager {
     public static final String ATLAS_PATH ="sp2.atlas";
     public static final String ATLAS_CUSTOM_PATH ="sp2_Custom.atlas";
     public static final String REGION_PLAYER_NAME ="player";
-    public static final String REGION_ENEMY_NAME ="ovni";
+    public static final String REGION_ENEMY_NAME ="enemy";
     public static final String REGION_EXPLOSION_NAME ="explosion";
+    public static final String REGION_PLAYER_SHOT ="playershot";
+    public static final String REGION_ENEMY_SHOT ="enemyshot";
 
     // SOUND
     public static final String SOUND_PATH ="sounds/";

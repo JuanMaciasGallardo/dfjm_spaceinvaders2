@@ -17,6 +17,8 @@ public class HeroBullet extends Actor {
     private Animation<TextureRegion> skin;
     private PlayerSpaceShip player;
 
+    private float iniX;
+
     private Rectangle body;
 
 
@@ -24,14 +26,17 @@ public class HeroBullet extends Actor {
         super();
         this.player = player;
         TextureAtlas atlas = new TextureAtlas(Gdx.files.internal(AssetsManager.ATLAS_PATH));
-        skin = new Animation<TextureRegion>(SettingsManager.PLAYER_ANIMATION_TIME, atlas.findRegions(AssetsManager.REGION_EXPLOSION_NAME), Animation.PlayMode.LOOP);
-        this.setBounds(0, 0, SettingsManager.PLAYER_SIZE,  SettingsManager.PLAYER_SIZE);
-        this.setX(player.getX());
+        skin = new Animation<TextureRegion>(SettingsManager.PLAYER_ANIMATION_TIME, atlas.findRegions(AssetsManager.REGION_PLAYER_SHOT));
+
+        this.setBounds(0, 0, SettingsManager.PLAYER_BULLET_SIZE_X,  SettingsManager.PLAYER_BULLET_SIZE_Y);
+
+        iniX = player.getWidth()/2 - getWidth()/2;
+        this.setX(player.getX() + iniX);
         this.setY(player.getY());
     }//PLAYERSPACESHIP
 
     public void resetPos() {
-        setX(player.getX());
+        setX(player.getX() + iniX);
         setY(player.getY());
     }//RESETPOS
 
@@ -43,6 +48,6 @@ public class HeroBullet extends Actor {
     public void draw(Batch batch, float parentAlpha) {
         super.draw(batch, parentAlpha);
         TextureRegion currentFrame = skin.getKeyFrame(GameManager.getSingleton().getGameTime(), true);
-        batch.draw(currentFrame, this.getX(), this.getY(), SettingsManager.PLAYER_SIZE,  SettingsManager.PLAYER_SIZE);
+        batch.draw(currentFrame, this.getX(), this.getY(), SettingsManager.PLAYER_BULLET_SIZE_X,  SettingsManager.PLAYER_BULLET_SIZE_Y);
     }//DRAW
 }//CLASS

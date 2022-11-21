@@ -9,6 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.politecnicomalaga.sp2.managers.ScreensManager;
 import com.politecnicomalaga.sp2.managers.SettingsManager;
 import com.politecnicomalaga.sp2.model.Battalion;
 import com.politecnicomalaga.sp2.model.EnemyShip;
@@ -62,7 +63,10 @@ public class GameScreen implements Screen {
             // CHANGE THE X OF THE PLAYER
             @Override
             public void touchDragged(InputEvent event, float x, float y, int pointer) {
-                heroShip.setX(Gdx.input.getX() - SettingsManager.PLAYER_SIZE/2);
+                if (Gdx.input.getX() > 0 + heroShip.getWidth() && Gdx.input.getX() < stage.getWidth() - heroShip.getWidth()) {
+                    heroShip.setX(Gdx.input.getX() - SettingsManager.PLAYER_SIZE/2);
+                }//IF
+
                 //heroShip.setY(SettingsManager.SCREEN_HEIGHT - Gdx.input.getY() - SettingsManager.PLAYER_SIZE/2);
             }//EVENT
         });
@@ -107,6 +111,10 @@ public class GameScreen implements Screen {
 
                             if (empire.getSquads().get(d).getTroops().size == 0) {
                                 empire.getSquads().removeIndex(d);
+                            }//IF
+
+                            if (empire.getSquads().size == 0) {
+                                game.setScreen(ScreensManager.getSingleton().getScreen(game, ScreensManager.Screens.GAMEOVER));
                             }//IF
                         }//IF
                     }//FOR

@@ -4,11 +4,13 @@ package com.politecnicomalaga.sp2.managers;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.politecnicomalaga.sp2.view.GameOverScreen;
 import com.politecnicomalaga.sp2.view.GameScreen;
+import com.politecnicomalaga.sp2.view.SplashScreen;
 
 public class ScreensManager {
     // VARAIBLES
-    public enum Screens {START, PLAYING, END};
+    public enum Screens {SPLASH, GAME, GAMEOVER, SETTINGS, CREDITS};
     private static ScreensManager singleton;
     private ScreensManager () {
     }
@@ -18,21 +20,26 @@ public class ScreensManager {
             singleton = new ScreensManager();
         }
         return singleton;
-    }
+    }//Constructor
     public Screen getScreen(Game game, Screens screen) {
         Screen activeScreen = null;
 
+        ScreenUtils.clear(0, 0, 0, 1);
         switch (screen) {
-            case START: ;
+            case SPLASH: activeScreen = new SplashScreen(game);
                 break;
-            case PLAYING: activeScreen= new GameScreen(game);
+            case GAME: activeScreen = new GameScreen(game);
                 break;
-            case END: ;
+            case GAMEOVER: activeScreen= new GameOverScreen(game);
+                break;
+            case SETTINGS:
+                break;
+            case CREDITS:
                 break;
                 // DEFAULT WILL BE SPLASH SCREEN IN THE NEXT VERSION
-            default: activeScreen= new GameScreen(game);
-        }
+            default: activeScreen= new SplashScreen(game);
+        }//SWITCH
 
         return activeScreen;
-    }
-}
+    }//GETSCREEN
+}//CLASS

@@ -31,6 +31,10 @@ public class Squadron {
         }
     }
 
+    public Array<EnemyShip> getTroops() {
+        return troops;
+    }
+
     public void addActors() {
         for (EnemyShip es : troops) {
             bsStage.addActor(es);

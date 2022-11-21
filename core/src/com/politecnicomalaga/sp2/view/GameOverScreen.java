@@ -14,7 +14,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.FillViewport;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.politecnicomalaga.sp2.managers.AssetsManager;
 import com.politecnicomalaga.sp2.managers.GUISettings;
+import com.politecnicomalaga.sp2.managers.LanguageManager;
 import com.politecnicomalaga.sp2.managers.SettingsManager;
 
 /**
@@ -35,11 +37,16 @@ public class GameOverScreen implements Screen {
         Gdx.input.setInputProcessor(stage);
 
         // CREATE A TYPINGLABELs
-        Label textPlay = createLabel("PLAY", GUISettings.COLOR_PLAY, 0, 60);
-        Label textGameName = createLabel("SPACE     INVADERS", GUISettings.COLOR_GAME_NAME, 0, (int) textPlay.getY() - 60);
-        Label textCorporationName = createLabel("$ KARTOFFEL STUDIOS", GUISettings.COLOR_CORPORATION_GAME, 0, -190);
-        Label textScore = createLabel("CREDIT", GUISettings.COLOR_CREDIT, 160, -250);
+        Label textPlay = createLabel(LanguageManager.getSingleton().getString(LanguageManager.LBL_PLAY_ID), GUISettings.COLOR_PLAY, 0, 60);
+         textPlay.setFontScale(1f);
+        Label textGameName = createLabel(LanguageManager.getSingleton().getString(LanguageManager.LBL_GAME_NAME_ID), GUISettings.COLOR_GAME_NAME, 0, (int) textPlay.getY() - 60);
+         textGameName.setFontScale(1f);
+        Label textCorporationName = createLabel(LanguageManager.getSingleton().getString(LanguageManager.LBL_STUDIOS_NAME_ID), GUISettings.COLOR_CORPORATION_GAME, 0, -190);
+         textCorporationName.setFontScale(1f);
+        Label textScore = createLabel(LanguageManager.getSingleton().getString(LanguageManager.LBL_MONEY_ID), GUISettings.COLOR_CREDIT, 160, -250);
+         textScore.setFontScale(1f);
         Label textScoreValue = createLabel("0", GUISettings.COLOR_CREDIT_VALUE, (int) textScore.getX() + 130, (int) textScore.getY());
+         textScoreValue.setFontScale(1f);
 
         // ADD THE LABELs TO THE STAGE
         stage.addActor(textPlay);
@@ -63,7 +70,7 @@ public class GameOverScreen implements Screen {
 
     public Label createLabel(String text, Color color, int x, int y){
         text = setSpaceInLetters(text);
-        Label label = new Label(text, new Skin(Gdx.files.internal("skin/uiskin.json")));
+        Label label = new Label(text, AssetsManager.getSingleton().getTextSkin());
         label.setBounds(x, y, stage.getWidth(), stage.getHeight());
         label.setColor(color);
         label.setAlignment(Align.center);
