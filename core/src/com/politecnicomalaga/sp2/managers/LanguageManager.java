@@ -3,7 +3,7 @@ package com.politecnicomalaga.sp2.managers;
 public class LanguageManager {
 
     // VARIABLES
-    public enum Languages {SPANISH, ENGLISH};
+    public enum Languages {SPANISH, ENGLISH, GERMAN};
     private static LanguageManager singleton;
 
     private Languages activeLang;
@@ -40,6 +40,21 @@ public class LanguageManager {
             "Honourable Mentions",
             "Potatoes"};
 
+    private static final String[] STR_GERMAN = {
+            "$ KARTOFFEL STUDIOS",
+            "SPACE     INVADERS",
+            "SPIELEN",
+            "GELD",
+            "SPACE INVADERS",
+            "Anfang",
+            "Konfiguration",
+            "Oberster Fuhrer der Junit",
+            "Gigachad der JUnit",
+            "Zuruck",
+            "Abspann",
+            "Ehrende Erwahnungen",
+            "Kartoffeln"};
+
     // STRINGS' IDS
     public static final int LBL_STUDIOS_NAME_ID = 0;
     public static final int LBL_GAME_NAME_ID = 1;
@@ -54,6 +69,7 @@ public class LanguageManager {
     public static final int LBL_CREDITS_ID = 10;
     public static final int LBL_HONOURS_ID = 11;
     public static final int LBL_POTATO_ID = 12;
+
 
     private LanguageManager() {
         activeLang = Languages.SPANISH;
@@ -80,6 +96,10 @@ public class LanguageManager {
             case SPANISH: {
                 activeLang = Languages.SPANISH;
                 activeStrings = STR_SPANISH;
+            }
+            case GERMAN: {
+                activeLang = Languages.GERMAN;
+                activeStrings = STR_GERMAN;
             }
         }
     }//SETACTIVELANGUAGE
