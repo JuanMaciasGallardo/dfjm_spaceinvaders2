@@ -50,7 +50,7 @@ Asignación de clases para nuevo *sprint*:
 - ***David:*** `GameOverScreen`+, `HeroBullet`+ **+** `GUISettings`+, `PlayerSpaceShip`, `GameScreen`, `EnemyShip` -> rama `david`
 - ***Felipe:*** `SettingsScreen`+, `CreditsScreen`+ -> rama `felipe`
 - ***Juan:*** `LanguageManager`+, `AssetsManager` -> rama  `juan`
-- ***Miguel:*** `SplashScreen`+, crear Atlas con disparos -> rama `miguel`
+- ***Miguel:*** `SplashScreen`+, crear Atlas con disparos **+** `Battalion`, `Squadroon` -> rama `miguel`
 * *Un más («+») pegado a la clase por detrás significa que es una clase nueva.*
 
 ###### 2022/11/15
@@ -67,4 +67,14 @@ encontrar imágenes para el Atlas.
 ###### 2022/11/17
 - ***Felipe:*** Empezadas clases `SettingsScreen` y `CreditsScreen`.
 - ***Juan:*** *Skin* del *UI* cambiado. `LanguageManager` modificado con nuevos textos.
+- ***David:*** Constantes necesarias de `GUISettings` y `SettingsManager` actualizadas. Actualizados `EnemyShip`, `PlayerSpaceShip`, `HeroBullet` y `GameScreen` para incluir colisiones.
+Cambios de textos de *labels* a *String* en `GameOverScreen` para futuras actualizaciones con `LanguageManager`.
 
+###### 2022/11/18
+- ***Miguel:*** `SplashScreen` terminado. Atlas terminado. Complicaciones por fallos en `SplashScreen`.
+
+###### 2022/11/21
+- ***Felipe:*** Continuación y corrección de errores de las clases `SettingsScreen` y `CreditsScreen`.
+- ***David:*** unión de ramas y adaptaciones de clases.
+- ***Juan:*** Añadido *alemán* en `LanguageManager`.
+- ***Miguel:*** `SplashScreen` terminado. Cambios en `Battalion` y `Squadroon`. Todo subido.
