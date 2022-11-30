@@ -12,6 +12,7 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.politecnicomalaga.sp2.managers.ScreensManager;
 import com.politecnicomalaga.sp2.managers.SettingsManager;
 import com.politecnicomalaga.sp2.model.Battalion;
+import com.politecnicomalaga.sp2.model.Collisions;
 import com.politecnicomalaga.sp2.model.EnemyShip;
 import com.politecnicomalaga.sp2.model.HeroBullet;
 import com.politecnicomalaga.sp2.model.PlayerSpaceShip;
@@ -28,6 +29,8 @@ public class GameScreen implements Screen {
 
     private Battalion empire;
     private PlayerSpaceShip heroShip;
+
+    private Collisions collisions;
 
 
     public GameScreen(Game aGame) {
@@ -71,6 +74,9 @@ public class GameScreen implements Screen {
             }//EVENT
         });
         heroShip.setTouchable(Touchable.enabled);
+
+        // ADD COLLISIONS CONTROLLER
+        collisions = new Collisions(heroShip, empire, game);
     }//Constructor
 
     @Override
@@ -85,48 +91,16 @@ public class GameScreen implements Screen {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        // CHECK COLLISIONS
-        out:
-        // FOR OF BULLETS
-        for (int f=0; f<heroShip.getBullets().size; f++) {
-            HeroBullet bullet = heroShip.getBullets().get(f);
-
-            // FOR OF SQUADS
-            for (int d=0; d<empire.getSquads().size; d++) {
-                Squadron sq = empire.getSquads().get(d);
-
-                // IF IS NEAR OF THE SQUAD
-                if (sq.getTroops().get(0).getY() - bullet.getHeight() < bullet.getY()) {
-                    // FOR OF TROOPS
-                    for (int c=0; c<sq.getTroops().size; c++) {
-                        EnemyShip enemy = sq.getTroops().get(c);
-
-                        // IF COLLISION
-                        if (enemy.isColliding(bullet)) {
-                            heroShip.getBullets().removeIndex(f);
-                            bullet.remove();
-
-                            sq.getTroops().removeIndex(c);
-                            enemy.remove();
-
-                            if (empire.getSquads().get(d).getTroops().size == 0) {
-                                empire.getSquads().removeIndex(d);
-                            }//IF
-
-                            if (empire.getSquads().size == 0) {
-                                game.setScreen(ScreensManager.getSingleton().getScreen(game, ScreensManager.Screens.GAMEOVER));
-                            }//IF
-                        }//IF
-                    }//FOR
-                } else {
-                    break out;
-                }//IF
-            }//FOR
-        }//FOR
+        // RENDER COLLISIONS
+        collisions.checkCollisionsEmemyShip();
+        collisions.checkCollisionsPlayerSpaceShip();
 
         // PAINT ACTORS
         stage.act(delta);
         stage.draw();
+
+        // BATALLION AUTO SHOT
+        empire.shoot();
     }//RENDER
 
     @Override

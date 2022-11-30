@@ -11,34 +11,41 @@ import com.politecnicomalaga.sp2.managers.AssetsManager;
 import com.politecnicomalaga.sp2.managers.GameManager;
 import com.politecnicomalaga.sp2.managers.SettingsManager;
 
-
-public class HeroBullet extends Actor {
+public class EnemyBullet extends Actor {
 
     private Animation<TextureRegion> skin;
-    private PlayerSpaceShip player;
+    private EnemyShip enemyShip;
 
     private float iniX;
 
     private Rectangle body;
 
 
-    public HeroBullet(PlayerSpaceShip player) {
+    public EnemyBullet(EnemyShip enemyShip) {
         super();
-        this.player = player;
+        this.enemyShip = enemyShip;
         TextureAtlas atlas = new TextureAtlas(Gdx.files.internal(AssetsManager.ATLAS_PATH));
-        skin = new Animation<TextureRegion>(SettingsManager.PLAYER_ANIMATION_TIME, atlas.findRegions(AssetsManager.REGION_PLAYER_SHOT));
+        skin = new Animation<TextureRegion>(SettingsManager.BULLET_ANIMATION_TIME, atlas.findRegions(AssetsManager.REGION_ENEMY_SHOT));
 
-        this.setBounds(0, 0, SettingsManager.PLAYER_BULLET_WIDTH,  SettingsManager.PLAYER_BULLET_HEIGHT);
+        this.setBounds(0, 0, SettingsManager.ENEMY_BULLET_WIDTH,  SettingsManager.ENEMY_BULLET_HEIGHT);
 
-        iniX = player.getWidth()/2 - getWidth()/2;
-        this.setX(player.getX() + iniX);
-        this.setY(player.getY());
+        iniX = enemyShip.getWidth()/2 - getWidth()/2;
+        this.setX(enemyShip.getX() + iniX);
+        this.setY(enemyShip.getY());
     }//PLAYERSPACESHIP
 
-    public void resetPos() {
-        setX(player.getX() + iniX);
-        setY(player.getY());
+    public void changeOfEnemy(EnemyShip enemy) {
+        enemyShip.removeBullet();
+        enemyShip = enemy;
+
+        setX(enemyShip.getX() + iniX);
+        setY(enemyShip.getY());
+        enemyShip.addBullet(this);
     }//RESETPOS
+
+    public EnemyShip getEnemyShip() {
+        return enemyShip;
+    }//GETENEMYSHIP
 
     public Rectangle getBody() {
         return body = new Rectangle((int) getX(), (int) getY(), (int) getWidth(), (int) getHeight());
@@ -48,6 +55,6 @@ public class HeroBullet extends Actor {
     public void draw(Batch batch, float parentAlpha) {
         super.draw(batch, parentAlpha);
         TextureRegion currentFrame = skin.getKeyFrame(GameManager.getSingleton().getGameTime(), true);
-        batch.draw(currentFrame, this.getX(), this.getY(), SettingsManager.PLAYER_BULLET_WIDTH,  SettingsManager.PLAYER_BULLET_HEIGHT);
+        batch.draw(currentFrame, this.getX(), this.getY(), SettingsManager.ENEMY_BULLET_WIDTH,  SettingsManager.ENEMY_BULLET_HEIGHT);
     }//DRAW
 }//CLASS

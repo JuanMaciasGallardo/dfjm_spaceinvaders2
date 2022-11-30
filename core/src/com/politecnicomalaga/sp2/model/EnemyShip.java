@@ -16,8 +16,8 @@ public class EnemyShip extends Actor {
 
     private Animation<TextureRegion> skin;
     private Rectangle body;
-    private float x;
-    private float y;
+
+    private EnemyBullet bullet;
 
 
     public EnemyShip(float posX,float posY) {
@@ -36,11 +36,35 @@ public class EnemyShip extends Actor {
         return bullet.getBody().overlaps(body);
     }//ISCOLLISIONING
 
+    public void addBullet(EnemyBullet bullet) {
+        this.bullet = bullet;
+    }//ADDBULLET
+
+    public EnemyBullet getBullet() {
+        return bullet;
+    }
+
+    public void removeBullet() {
+        this.bullet = null;
+    }//REMOVEBULLET
+
+    public boolean isShooting() {
+        if (bullet == null) {
+            return false;
+        }//IF
+
+        return true;
+    }//ISSHOOTING
+
     @Override
     public void draw(Batch batch, float parentAlpha) {
+        // PAINT BULLET
+        if (bullet != null) {
+            bullet.draw(batch, parentAlpha);
+        }//IF
+
         super.draw(batch, parentAlpha);
         TextureRegion currentFrame = skin.getKeyFrame(GameManager.getSingleton().getGameTime(), true);
         batch.draw(currentFrame, getX(), getY(), SettingsManager.ENEMY_SIZE, SettingsManager.ENEMY_SIZE);
-    }
-
-}
+    }//DRAW
+}//CLASS

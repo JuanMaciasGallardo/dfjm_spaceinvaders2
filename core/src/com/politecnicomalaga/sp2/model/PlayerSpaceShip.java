@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Array;
 import com.politecnicomalaga.sp2.managers.AssetsManager;
@@ -18,6 +19,7 @@ public class PlayerSpaceShip extends Actor {
     private Animation<TextureRegion> skin;
     private Array<HeroBullet> activeBullets;
     private Stack<HeroBullet> inactiveBullets;
+    private Rectangle body;
 
     private float deltaBullet;
 
@@ -31,6 +33,9 @@ public class PlayerSpaceShip extends Actor {
         this.setBounds(0, 0, SettingsManager.PLAYER_SIZE,  SettingsManager.PLAYER_SIZE);
         this.setX(SettingsManager.PLAYER_HOR_POS - SettingsManager.PLAYER_SIZE/2);
         this.setY(SettingsManager.PLAYER_VER_POS);
+
+        // UPDATE RECTANGLE
+        updateBody();
 
         deltaBullet = GameManager.getSingleton().getGameTime();
 
@@ -67,11 +72,20 @@ public class PlayerSpaceShip extends Actor {
         activeBullets.add(newBullet);
     }//TRANSFERBULLET
 
+    public boolean isColliding(EnemyBullet bullet) {
+        updateBody();
+        return bullet.getBody().overlaps(body);
+    }//ISCOLLISIONING
+
+    private void updateBody() {
+        body = new Rectangle(getX(), getY(), getWidth(), getHeight());
+    }//UPDATEBODY
+
     @Override
     public void draw(Batch batch, float parentAlpha) {
         // CHECK WHEN THE PLAYER CAN SHOOT
         if (isShooting) {
-            if (deltaBullet+SettingsManager.BULLET_RATIO < GameManager.getSingleton().getGameTime()) {
+            if (deltaBullet+SettingsManager.BULLET_PLAYER_RATIO < GameManager.getSingleton().getGameTime()) {
                 deltaBullet = GameManager.getSingleton().getGameTime();
                 shoot();
             }//IF
@@ -88,7 +102,7 @@ public class PlayerSpaceShip extends Actor {
 
         // PAINT
         for (int f=0; f<activeBullets.size; f++) {
-            activeBullets.get(f).setY(activeBullets.get(f).getY()+SettingsManager.BULLET_SPEED);
+            activeBullets.get(f).setY(activeBullets.get(f).getY()+SettingsManager.BULLET_PLAYER_SPEED);
             activeBullets.get(f).draw(batch, parentAlpha);
         }//FOR
 
