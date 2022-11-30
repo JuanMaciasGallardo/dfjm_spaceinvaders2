@@ -78,3 +78,10 @@ Cambios de textos de *labels* a *String* en `GameOverScreen` para futuras actual
 - ***David:*** unión de ramas y adaptaciones de clases.
 - ***Juan:*** Añadido *alemán* en `LanguageManager`.
 - ***Miguel:*** `SplashScreen` terminado. Cambios en `Battalion` y `Squadroon`. Todo subido.
+
+####  Sprint 3
+
+###### 2022/11/30
+- ***David:***  Disparos desde los enemigos con colision disparo a jugador.
+- ***Juan:***  Control de finalización de la partida (transición a `GameOver`)
+- ***Felipe y Juan/Miguel:*** Añadir música banda sonora en `Splash Screen`, música del juego en `GameScreen` y sonidos para los clicks en los botones y sonidos en las explosiones y creación de los disparos.
