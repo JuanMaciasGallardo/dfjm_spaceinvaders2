@@ -41,7 +41,7 @@ public class HeroBullet extends Actor {
     }//RESETPOS
 
     public Rectangle getBody() {
-        return body = new Rectangle((int) getX(), (int) getY(), (int) getWidth(), (int) getHeight());
+        return body = new Rectangle(getX(), getY(), getWidth(), getHeight());
     }//GETBODY
 
     @Override

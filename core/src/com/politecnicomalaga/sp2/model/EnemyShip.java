@@ -19,6 +19,9 @@ public class EnemyShip extends Actor {
 
     private EnemyBullet bullet;
 
+    private boolean remove;
+    private float frameExplosion;
+
 
     public EnemyShip(float posX,float posY) {
         super();
@@ -26,11 +29,16 @@ public class EnemyShip extends Actor {
         skin = new Animation<TextureRegion>(SettingsManager.ENEMY_ANIMATION_TIME,
                 atlas.findRegions(AssetsManager.REGION_ENEMY_NAME),
                 Animation.PlayMode.LOOP);
+
         this.setBounds(0, 0, SettingsManager.ENEMY_SIZE,  SettingsManager.ENEMY_SIZE);
         setX(posX);
         setY(posY);
+
         body = new Rectangle(getX(), getY(), getWidth(), getHeight());
-    }
+
+        remove = false;
+        frameExplosion = 0f;
+    }//Constructor
 
     public boolean isColliding(HeroBullet bullet) {
         return bullet.getBody().overlaps(body);
@@ -56,6 +64,26 @@ public class EnemyShip extends Actor {
         return true;
     }//ISSHOOTING
 
+    public void removeWhenYouCan() {
+        // CHANGE SKIN TO EXPLOSION (FIX)
+        skin = new Animation<TextureRegion>(SettingsManager.ENEMY_EXPLOSION_ANIMATION_TIME,
+                new TextureAtlas(AssetsManager.ATLAS_PATH).findRegions(AssetsManager.REGION_EXPLOSION_NAME),
+                Animation.PlayMode.NORMAL);
+
+        remove = true;
+    }//REMOVEWHENYOUCAN
+
+    @Override
+    public void act(float delta) {
+        super.act(delta);
+
+        if (remove) {
+            if (bullet == null) {
+                remove();
+            }//IF
+        }//IF
+    }//ACT
+
     @Override
     public void draw(Batch batch, float parentAlpha) {
         // PAINT BULLET
@@ -64,7 +92,7 @@ public class EnemyShip extends Actor {
         }//IF
 
         super.draw(batch, parentAlpha);
-        TextureRegion currentFrame = skin.getKeyFrame(GameManager.getSingleton().getGameTime(), true);
+        TextureRegion currentFrame = skin.getKeyFrame(GameManager.getSingleton().getGameTime(), false);
         batch.draw(currentFrame, getX(), getY(), SettingsManager.ENEMY_SIZE, SettingsManager.ENEMY_SIZE);
     }//DRAW
 }//CLASS

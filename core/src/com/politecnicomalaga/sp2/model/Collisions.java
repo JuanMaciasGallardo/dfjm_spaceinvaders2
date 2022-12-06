@@ -2,6 +2,7 @@ package com.politecnicomalaga.sp2.model;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.utils.Array;
+import com.politecnicomalaga.sp2.managers.AssetsManager;
 import com.politecnicomalaga.sp2.managers.ScreensManager;
 import com.politecnicomalaga.sp2.managers.SettingsManager;
 
@@ -21,7 +22,6 @@ public class Collisions {
 
     public void checkCollisionsEmemyShip() {
         // CHECK COLLISIONS
-        out:
         // FOR OF BULLETS
         for (int f=0; f<heroShip.getBullets().size; f++) {
             HeroBullet bullet = heroShip.getBullets().get(f);
@@ -31,7 +31,7 @@ public class Collisions {
                 Squadron sq = empire.getSquads().get(d);
 
                 // IF IS NEAR OF THE SQUAD
-                if (sq.getTroops().get(0).getY() - bullet.getHeight() < bullet.getY()) {
+                if (sq.getPosY() - SettingsManager.ENEMY_SIZE < bullet.getY()) {
                     // FOR OF TROOPS
                     for (int c=0; c<sq.getTroops().size; c++) {
                         EnemyShip enemy = sq.getTroops().get(c);
@@ -42,10 +42,7 @@ public class Collisions {
                             bullet.remove();
 
                             sq.getTroops().removeIndex(c);
-                            if (enemy.getBullet() != null) {
-                                enemy.getBullet().setY(-10);
-                            }//IF
-                            enemy.remove();
+                            enemy.removeWhenYouCan();
 
                             if (empire.getSquads().get(d).getTroops().size == 0) {
                                 empire.getSquads().removeIndex(d);
@@ -57,7 +54,7 @@ public class Collisions {
                         }//IF
                     }//FOR
                 } else {
-                    break out;
+                    break;
                 }//IF
             }//FOR
         }//FOR

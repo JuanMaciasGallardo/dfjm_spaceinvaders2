@@ -16,7 +16,14 @@ public class Squadron {
     private Stage bsStage;
     private Array<EnemyShip> troops;
 
+    private float posX;
+    private float posY;
+
+
     public Squadron(Stage baseStage, float posX, float posY) {
+        this.posX = posX;
+        this.posY = posY;
+
         // INITIATE ARRAY.
 
         troops = new Array<EnemyShip>();
@@ -30,6 +37,14 @@ public class Squadron {
             troops.add(newEnemy);
         }
     }
+
+    public float getPosX() {
+        return posX;
+    }//GETPOSX
+
+    public float getPosY() {
+        return posY;
+    }//GETPOSY
 
     public Array<EnemyShip> getTroops() {
         return troops;

@@ -27,8 +27,8 @@ public class SettingsManager {
     public static final short PLAYER_BULLET_HEIGHT = 20;
     public static final short ENEMY_BULLET_WIDTH = 6;
     public static final short ENEMY_BULLET_HEIGHT = 12;
-    public static final byte BULLET_PLAYER_SPEED = 10;
-    public static final byte BULLET_ENEMY_SPEED = 8;
+    public static final byte BULLET_PLAYER_SPEED = 7;
+    public static final byte BULLET_ENEMY_SPEED = 5;
     public static final float BULLET_PLAYER_RATIO = 0.35f;
     public static final float BULLET_ENEMY_RATIO = 0.35f;
 
@@ -36,5 +36,6 @@ public class SettingsManager {
     public static final float PLAYER_ANIMATION_TIME = 0.25f;
     public static final float ENEMY_ANIMATION_TIME = 0.5f;
     public static final float BULLET_ANIMATION_TIME = 0.25f;
+    public static final float ENEMY_EXPLOSION_ANIMATION_TIME = 0.5f;
 
 }//CLASS
