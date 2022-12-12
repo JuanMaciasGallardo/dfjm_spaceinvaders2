@@ -3,12 +3,15 @@ package com.politecnicomalaga.sp2.view;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.politecnicomalaga.sp2.managers.AssetsManager;
 import com.politecnicomalaga.sp2.managers.ScreensManager;
 import com.politecnicomalaga.sp2.managers.SettingsManager;
 import com.politecnicomalaga.sp2.model.Battalion;
@@ -29,9 +32,19 @@ public class GameScreen implements Screen {
     private Battalion empire;
     private PlayerSpaceShip heroShip;
 
+    private Music ostInit;
+    private Music ostLoop;
+    private boolean bStart;
 
     public GameScreen(Game aGame) {
         game = aGame;
+
+        // MUSIC CREATION.
+        ostInit = Gdx.audio.newMusic(Gdx.files.internal(AssetsManager.OST_GAME_INTRO));
+        ostInit.setLooping(false);
+        ostLoop = Gdx.audio.newMusic(Gdx.files.internal(AssetsManager.OST_GAME_LOOP));
+        ostLoop.setLooping(true);
+        bStart = true;
 
         // THIS SENTENCE CAN BE TYPED IN SHOW() TOO.
         stage = new Stage(new ScreenViewport());
@@ -64,7 +77,7 @@ public class GameScreen implements Screen {
             @Override
             public void touchDragged(InputEvent event, float x, float y, int pointer) {
                 if (Gdx.input.getX() > 0 + heroShip.getWidth() && Gdx.input.getX() < stage.getWidth() - heroShip.getWidth()) {
-                    heroShip.setX(Gdx.input.getX() - SettingsManager.PLAYER_SIZE/2);
+                    heroShip.setX(Gdx.input.getX() - SettingsManager.PLAYER_SIZE/2f);
                 }//IF
 
                 //heroShip.setY(SettingsManager.SCREEN_HEIGHT - Gdx.input.getY() - SettingsManager.PLAYER_SIZE/2);
@@ -84,6 +97,15 @@ public class GameScreen implements Screen {
 
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        if (!ostInit.isPlaying() && bStart) {
+            ostInit.play();
+            bStart = false;
+        }
+
+        if (!ostInit.isPlaying() && !ostLoop.isPlaying() && !bStart) {
+            ostLoop.play();
+        }
 
         // CHECK COLLISIONS
         out:
@@ -114,6 +136,12 @@ public class GameScreen implements Screen {
                             }//IF
 
                             if (empire.getSquads().size == 0) {
+                                if (ostInit.isPlaying()) {
+                                    ostInit.stop();
+                                }
+                                if (ostLoop.isPlaying()) {
+                                    ostLoop.stop();
+                                }
                                 game.setScreen(ScreensManager.getSingleton().getScreen(game, ScreensManager.Screens.GAMEOVER));
                             }//IF
                         }//IF
@@ -131,6 +159,8 @@ public class GameScreen implements Screen {
 
     @Override
     public void dispose() {
+        ostInit.dispose();
+        ostLoop.dispose();
         stage.dispose();
     }//DISPOSE
 

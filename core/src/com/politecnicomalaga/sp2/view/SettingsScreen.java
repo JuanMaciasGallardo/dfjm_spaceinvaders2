@@ -3,6 +3,7 @@ package com.politecnicomalaga.sp2.view;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -18,13 +19,19 @@ import com.politecnicomalaga.sp2.managers.ScreensManager;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 
 public class SettingsScreen implements Screen {
-   private Stage stage;
+    private Stage stage;
     private Game game;
+
+    private Sound sndClick;
+
     public SettingsScreen(Game agame){
 
         stage = new Stage(new ScreenViewport());
         game=agame;
         Gdx.input.setInputProcessor(stage);
+
+        // SOUND CREATION.
+        sndClick = Gdx.audio.newSound(Gdx.files.internal(AssetsManager.SND_CLICK));
 
         //LABELS
         Label lSettings;
@@ -58,6 +65,7 @@ public class SettingsScreen implements Screen {
         bSpanish.addListener(new InputListener(){
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+                sndClick.play();
                 changeLang(LanguageManager.Languages.SPANISH);
                 game.setScreen(ScreensManager.getSingleton().getScreen(game, ScreensManager.Screens.SPLASH));
             }
@@ -73,6 +81,7 @@ public class SettingsScreen implements Screen {
         bEnglish.addListener(new InputListener(){
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+                sndClick.play();
                 changeLang(LanguageManager.Languages.ENGLISH);
                 game.setScreen(ScreensManager.getSingleton().getScreen(game, ScreensManager.Screens.SPLASH));
             }
@@ -88,6 +97,7 @@ public class SettingsScreen implements Screen {
         bGerman.addListener(new InputListener(){
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+                sndClick.play();
                 changeLang(LanguageManager.Languages.GERMAN);
                 game.setScreen(ScreensManager.getSingleton().getScreen(game, ScreensManager.Screens.SPLASH));
             }

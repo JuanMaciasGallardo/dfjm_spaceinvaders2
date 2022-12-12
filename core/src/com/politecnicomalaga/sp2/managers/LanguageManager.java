@@ -70,7 +70,6 @@ public class LanguageManager {
     public static final int LBL_HONOURS_ID = 11;
     public static final int LBL_POTATO_ID = 12;
 
-
     private LanguageManager() {
         activeLang = Languages.SPANISH;
         activeStrings = STR_SPANISH;
@@ -103,10 +102,6 @@ public class LanguageManager {
                 activeLang = Languages.GERMAN;
                 activeStrings = STR_GERMAN;
                 break;
-            }
-            case GERMAN: {
-                activeLang = Languages.GERMAN;
-                activeStrings = STR_GERMAN;
             }
         }
     }//SETACTIVELANGUAGE

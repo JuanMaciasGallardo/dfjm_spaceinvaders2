@@ -3,6 +3,7 @@ package com.politecnicomalaga.sp2.view;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -29,9 +30,13 @@ public class GameOverScreen implements Screen {
     private Stage stage;
     private Game game;
 
+    private Sound sndClick;
 
     public GameOverScreen(Game aGame) {
         game = aGame;
+
+        // SOUND CREATION.
+        sndClick = Gdx.audio.newSound(Gdx.files.internal(AssetsManager.SND_CLICK));
 
         // THIS SENTENCE CAN BE TYPED IN SHOW() TOO.
         stage = new Stage(new ScreenViewport());
@@ -64,6 +69,7 @@ public class GameOverScreen implements Screen {
 
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+                sndClick.play();
                 game.setScreen(ScreensManager.getSingleton().getScreen(game, ScreensManager.Screens.SPLASH));
             }//EVENT
         });

@@ -3,6 +3,8 @@ package com.politecnicomalaga.sp2.view;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -24,6 +26,10 @@ public class SplashScreen implements Screen {
     private Game game;
     private Skin skin;
 
+    private Music ostMenu;
+    private Sound sndClick;
+    private boolean bStart;
+
     public SplashScreen(final Game aGame) {
         game = aGame;
 
@@ -32,6 +38,16 @@ public class SplashScreen implements Screen {
         skin = AssetsManager.getSingleton().getTextSkin();
 
         Gdx.input.setInputProcessor(stage);
+
+
+        // SOUND CREATION.
+        sndClick = Gdx.audio.newSound(Gdx.files.internal(AssetsManager.SND_CLICK));
+
+        // MUSIC CREATION.
+
+        ostMenu = Gdx.audio.newMusic(Gdx.files.internal(AssetsManager.OST_MENU));
+        ostMenu.setLooping(true);
+        bStart = true;
 
         // LABEL
         Label title = new Label(LanguageManager.getSingleton().getString(LanguageManager.LBL_GAME_NAME_ID), skin);
@@ -42,21 +58,23 @@ public class SplashScreen implements Screen {
 
         // BUTTONs
         TextButton playButton = new TextButton(LanguageManager.getSingleton().getString(LanguageManager.LBL_PLAY_ID), skin);
-        playButton.setWidth(Gdx.graphics.getWidth()/2);
+        playButton.setWidth(Gdx.graphics.getWidth()/2f);
         playButton.setPosition(stage.getWidth()/2 - playButton.getWidth()/2.5f,stage.getHeight()/2 + playButton.getHeight()/2.5f);
 
         TextButton settingsButton = new TextButton(LanguageManager.getSingleton().getString(LanguageManager.BTN_CONFIG_ID), skin);
-        settingsButton.setWidth(Gdx.graphics.getWidth()/2);
+        settingsButton.setWidth(Gdx.graphics.getWidth()/2f);
         settingsButton.setPosition(stage.getWidth()/2 - settingsButton.getWidth()/2.5f,stage.getHeight()/2 - settingsButton.getHeight()/2.5f * 2);
 
         TextButton creditsButton = new TextButton(LanguageManager.getSingleton().getString(LanguageManager.LBL_CREDITS_ID), skin);
-        creditsButton.setWidth(Gdx.graphics.getWidth()/2);
+        creditsButton.setWidth(Gdx.graphics.getWidth()/2f);
         creditsButton.setPosition(stage.getWidth()/2 - creditsButton.getWidth()/2.5f,stage.getHeight()/5 - creditsButton.getHeight()/2.5f);
 
         // EVENTS
         playButton.addListener(new InputListener(){
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+                ostMenu.stop();
+                sndClick.play();
                 game.setScreen(ScreensManager.getSingleton().getScreen(game, ScreensManager.Screens.GAME));
             }
             @Override
@@ -67,6 +85,8 @@ public class SplashScreen implements Screen {
         settingsButton.addListener(new InputListener(){
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+                ostMenu.stop();
+                sndClick.play();
                 game.setScreen(ScreensManager.getSingleton().getScreen(game, ScreensManager.Screens.SETTINGS));
             }
             @Override
@@ -77,6 +97,8 @@ public class SplashScreen implements Screen {
         creditsButton.addListener(new InputListener(){
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+                ostMenu.stop();
+                sndClick.play();
                 game.setScreen(ScreensManager.getSingleton().getScreen(game, ScreensManager.Screens.CREDITS));
             }
             @Override
@@ -108,9 +130,14 @@ public class SplashScreen implements Screen {
 
     @Override
     public void render(float delta) {
-
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        if (bStart) {
+            ostMenu.play();
+            bStart = false;
+        }
+
         stage.act();
         stage.draw();
     }
@@ -138,6 +165,7 @@ public class SplashScreen implements Screen {
 
     @Override
     public void dispose() {
+        ostMenu.dispose();
         stage.dispose();
     }
 
