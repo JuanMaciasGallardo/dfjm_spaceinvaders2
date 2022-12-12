@@ -4,150 +4,164 @@ size: 2048, 256
 format: RGBA8888
 filter: Nearest, Nearest
 repeat: none
-ovni
+enemy
   rotate: false
-  xy: 2, 29
+  xy: 2, 24
   size: 220, 220
   orig: 220, 220
   offset: 0, 0
   index: 4
-ovni
+enemy
   rotate: false
-  xy: 224, 29
+  xy: 224, 24
   size: 220, 220
   orig: 220, 220
   offset: 0, 0
   index: 1
-ovni
+enemy
   rotate: false
-  xy: 446, 29
+  xy: 446, 24
   size: 220, 220
   orig: 220, 220
   offset: 0, 0
   index: 6
-ovni
+enemy
   rotate: false
-  xy: 668, 29
+  xy: 668, 24
   size: 220, 220
   orig: 220, 220
   offset: 0, 0
   index: 3
-ovni
+enemy
   rotate: false
-  xy: 890, 29
+  xy: 890, 24
   size: 220, 220
   orig: 220, 220
   offset: 0, 0
   index: 5
-ovni
+enemy
   rotate: false
-  xy: 1112, 29
+  xy: 1112, 24
   size: 220, 220
   orig: 220, 220
   offset: 0, 0
   index: 2
+enemyshot
+  rotate: false
+  xy: 1334, 49
+  size: 6, 12
+  orig: 6, 12
+  offset: 0, 0
+  index: -1
 explosion
   rotate: false
-  xy: 1458, 209
+  xy: 1458, 204
+  size: 44, 40
+  orig: 44, 40
+  offset: 0, 0
+  index: 3
+explosion
+  rotate: false
+  xy: 1458, 204
+  size: 44, 40
+  orig: 44, 40
+  offset: 0, 0
+  index: 5
+explosion
+  rotate: false
+  xy: 1396, 82
+  size: 44, 40
+  orig: 44, 40
+  offset: 0, 0
+  index: 2
+explosion
+  rotate: false
+  xy: 1396, 82
+  size: 44, 40
+  orig: 44, 40
+  offset: 0, 0
+  index: 6
+explosion
+  rotate: false
+  xy: 1458, 162
+  size: 44, 40
+  orig: 44, 40
+  offset: 0, 0
+  index: 7
+explosion
+  rotate: false
+  xy: 1458, 162
+  size: 44, 40
+  orig: 44, 40
+  offset: 0, 0
+  index: 1
+explosion
+  rotate: false
+  xy: 1504, 204
   size: 44, 40
   orig: 44, 40
   offset: 0, 0
   index: 4
-explosion
-  rotate: false
-  xy: 1396, 88
-  size: 35, 39
-  orig: 44, 40
-  offset: 4, 1
-  index: 3
-explosion
-  rotate: false
-  xy: 1396, 88
-  size: 35, 39
-  orig: 44, 40
-  offset: 4, 1
-  index: 5
-explosion
-  rotate: false
-  xy: 2, 2
-  size: 28, 25
-  orig: 44, 40
-  offset: 7, 8
-  index: 2
-explosion
-  rotate: false
-  xy: 2, 2
-  size: 28, 25
-  orig: 44, 40
-  offset: 7, 8
-  index: 6
-explosion
-  rotate: false
-  xy: 1334, 53
-  size: 15, 13
-  orig: 44, 40
-  offset: 13, 14
-  index: 7
-explosion
-  rotate: false
-  xy: 1334, 53
-  size: 15, 13
-  orig: 44, 40
-  offset: 13, 14
-  index: 1
 player
   rotate: false
-  xy: 1334, 190
+  xy: 1334, 185
   size: 60, 59
   orig: 60, 59
   offset: 0, 0
   index: 5
 player
   rotate: false
-  xy: 1334, 129
+  xy: 1334, 124
   size: 60, 59
   orig: 60, 59
   offset: 0, 0
   index: 2
 player
   rotate: false
-  xy: 1334, 129
+  xy: 1334, 124
   size: 60, 59
   orig: 60, 59
   offset: 0, 0
   index: 8
 player
   rotate: false
-  xy: 1396, 190
+  xy: 1396, 185
   size: 60, 59
   orig: 60, 59
   offset: 0, 0
   index: 7
 player
   rotate: false
-  xy: 1396, 190
+  xy: 1396, 185
   size: 60, 59
   orig: 60, 59
   offset: 0, 0
   index: 3
 player
   rotate: false
-  xy: 1334, 68
+  xy: 1334, 63
   size: 60, 59
   orig: 60, 59
   offset: 0, 0
   index: 4
 player
   rotate: false
-  xy: 1334, 68
+  xy: 1334, 63
   size: 60, 59
   orig: 60, 59
   offset: 0, 0
   index: 6
 player
   rotate: false
-  xy: 1396, 129
+  xy: 1396, 124
   size: 60, 59
   orig: 60, 59
   offset: 0, 0
   index: 1
+playershot
+  rotate: false
+  xy: 2, 2
+  size: 8, 20
+  orig: 8, 20
+  offset: 0, 0
+  index: -1

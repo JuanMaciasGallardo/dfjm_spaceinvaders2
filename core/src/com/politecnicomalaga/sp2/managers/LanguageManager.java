@@ -92,10 +92,17 @@ public class LanguageManager {
             case ENGLISH: {
                 activeLang = Languages.ENGLISH;
                 activeStrings = STR_ENGLISH;
+                break;
             }
             case SPANISH: {
                 activeLang = Languages.SPANISH;
                 activeStrings = STR_SPANISH;
+                break;
+            }
+            case GERMAN: {
+                activeLang = Languages.GERMAN;
+                activeStrings = STR_GERMAN;
+                break;
             }
             case GERMAN: {
                 activeLang = Languages.GERMAN;

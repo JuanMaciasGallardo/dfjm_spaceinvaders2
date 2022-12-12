@@ -30,6 +30,10 @@ public class Battalion {
         }
     }
 
+    public Array<Squadron> getSquads() {
+        return  squadrons;
+    }
+
     public void addActors() {
         for (Squadron sq : squadrons) {
             sq.addActors();

@@ -6,13 +6,22 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.utils.Array;
 import com.politecnicomalaga.sp2.managers.AssetsManager;
 import com.politecnicomalaga.sp2.managers.GameManager;
 import com.politecnicomalaga.sp2.managers.SettingsManager;
 
+import java.util.Stack;
+
 public class PlayerSpaceShip extends Actor {
 
     private Animation<TextureRegion> skin;
+    private Array<HeroBullet> activeBullets;
+    private Stack<HeroBullet> inactiveBullets;
+
+    private float deltaBullet;
+
+    private boolean isShooting;
 
 
     public PlayerSpaceShip() {
@@ -22,10 +31,67 @@ public class PlayerSpaceShip extends Actor {
         this.setBounds(0, 0, SettingsManager.PLAYER_SIZE,  SettingsManager.PLAYER_SIZE);
         this.setX(SettingsManager.PLAYER_HOR_POS - SettingsManager.PLAYER_SIZE/2);
         this.setY(SettingsManager.PLAYER_VER_POS);
+
+        deltaBullet = GameManager.getSingleton().getGameTime();
+
+        // INICIALIZE THREAD SHOOT
+        activeBullets = new Array<HeroBullet>();
+        inactiveBullets = new Stack<HeroBullet>();
     }//PLAYERSPACESHIP
+
+    public void canShoot(boolean canShoot) {
+        isShooting = canShoot;
+    }//CANSHOOT
+
+    public void shoot() {
+        if (inactiveBullets.size() == 0) {
+            activeBullets.add(new HeroBullet(this));
+        } else {
+            transferBullet();
+        }//IF
+    }//SHOOT
+
+    public Array<HeroBullet> getBullets() {
+        return activeBullets;
+    }//GETBULLETS
+
+    private void transferBullet(int pos) {
+        HeroBullet newBullet = activeBullets.get(pos);
+        activeBullets.removeIndex(pos);
+        inactiveBullets.push(newBullet);
+    }//TRANSFERBULLET
+
+    private void transferBullet() {
+        HeroBullet newBullet = inactiveBullets.pop();
+        newBullet.resetPos();
+        activeBullets.add(newBullet);
+    }//TRANSFERBULLET
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
+        // CHECK WHEN THE PLAYER CAN SHOOT
+        if (isShooting) {
+            if (deltaBullet+SettingsManager.BULLET_RATIO < GameManager.getSingleton().getGameTime()) {
+                deltaBullet = GameManager.getSingleton().getGameTime();
+                shoot();
+            }//IF
+        }//IF
+
+        // TO TRANSFER BULLETS
+        for (int f=0; f<activeBullets.size; f++) {
+            if (activeBullets.get(f).getY() > SettingsManager.SCREEN_HEIGHT) {
+                transferBullet(f);
+            } else {
+                break;
+            }//IF
+        }//FOR
+
+        // PAINT
+        for (int f=0; f<activeBullets.size; f++) {
+            activeBullets.get(f).setY(activeBullets.get(f).getY()+SettingsManager.BULLET_SPEED);
+            activeBullets.get(f).draw(batch, parentAlpha);
+        }//FOR
+
         super.draw(batch, parentAlpha);
         TextureRegion currentFrame = skin.getKeyFrame(GameManager.getSingleton().getGameTime(), true);
         batch.draw(currentFrame, this.getX(), this.getY(), SettingsManager.PLAYER_SIZE,  SettingsManager.PLAYER_SIZE);
