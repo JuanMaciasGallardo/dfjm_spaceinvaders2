@@ -27,12 +27,13 @@ public class AssetsManager {
     public static final String REGION_ENEMY_SHOT ="enemyshot";
 
     // SOUND
-    public static final String SOUND_PATH ="sounds/";
-    public static final String SOUND_DAMAGE ="damage.wav";
-    public static final String SOUND_DAMAGE1 ="damage1.wav";
-    public static final String OST_GAME_MUSIC ="gamemusic.ogg";
-    public static final String OST_INTO ="gamemusic.ogg";
-    public static final String SOUND_MOVE ="move.wav";
+    public static final String SOUND_PATH = "sounds/";
+    public static final String OST_GAME_INTRO = SOUND_PATH + "ost_play_init.ogg";
+    public static final String OST_GAME_LOOP = SOUND_PATH + "ost_play_loop.ogg";
+    public static final String OST_MENU = SOUND_PATH + "ost_menu.ogg";
+    public static final String SND_EXPLOSION = SOUND_PATH + "explosion.ogg";
+    public static final String SND_CLICK = SOUND_PATH + "click.ogg";
+    public static final String SND_SHOT = SOUND_PATH + "shot.ogg";
 
     // DIGITS
     public static final String DIGIT_PATH ="numbers/";

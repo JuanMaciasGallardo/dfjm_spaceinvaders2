@@ -1,6 +1,7 @@
 package com.politecnicomalaga.sp2.model;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -24,7 +25,7 @@ public class PlayerSpaceShip extends Actor {
     private float deltaBullet;
 
     private boolean isShooting;
-
+    private Sound sndShot;
 
     public PlayerSpaceShip() {
         super();
@@ -39,6 +40,8 @@ public class PlayerSpaceShip extends Actor {
 
         deltaBullet = GameManager.getSingleton().getGameTime();
 
+        sndShot = Gdx.audio.newSound(Gdx.files.internal(AssetsManager.SND_SHOT));
+
         // INICIALIZE THREAD SHOOT
         activeBullets = new Array<HeroBullet>();
         inactiveBullets = new Stack<HeroBullet>();
@@ -49,6 +52,7 @@ public class PlayerSpaceShip extends Actor {
     }//CANSHOOT
 
     public void shoot() {
+        sndShot.play();
         if (inactiveBullets.size() == 0) {
             activeBullets.add(new HeroBullet(this));
         } else {

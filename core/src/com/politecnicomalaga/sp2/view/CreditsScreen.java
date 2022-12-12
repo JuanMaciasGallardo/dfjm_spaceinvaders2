@@ -3,6 +3,8 @@ package com.politecnicomalaga.sp2.view;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -30,10 +32,22 @@ public class CreditsScreen implements Screen {
             JUNIT="JUnit",
             TEACHER="Andres Alcaraz Rey";
 
+    private Music ostCredits;
+    private boolean bStart;
+
+    private Sound sndClick;
 
     public CreditsScreen(Game agame){
-        //STRINGS WITH EACH ONE NAME
 
+        // SOUND CREATION.
+        sndClick = Gdx.audio.newSound(Gdx.files.internal(AssetsManager.SND_CLICK));
+
+        // MUSIC CREATION
+        ostCredits = Gdx.audio.newMusic(Gdx.files.internal(AssetsManager.OST_GAME_INTRO));
+        ostCredits.setLooping(true);
+        bStart = true;
+
+        // LABELS.
 
         Label lCredits;
         Label lEnterprise = null;
@@ -175,6 +189,8 @@ public class CreditsScreen implements Screen {
         stage.addListener(new InputListener(){
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+                ostCredits.stop();
+                sndClick.play();
                 game.setScreen(ScreensManager.getSingleton().getScreen(game, ScreensManager.Screens.SPLASH));
             }
             @Override
@@ -195,6 +211,12 @@ public class CreditsScreen implements Screen {
 
     @Override
     public void render(float delta) {
+
+        if (bStart) {
+            ostCredits.play();
+            bStart = false;
+        }
+
         stage.act();
         stage.draw();
     }
@@ -222,6 +244,7 @@ public class CreditsScreen implements Screen {
     @Override
     public void dispose() {
         stage.dispose();
+        ostCredits.dispose();
     }
 }
 
