@@ -8,7 +8,7 @@ public class SettingsManager {
 
     // WINDOW
     public static final short SCREEN_MID_WIDTH = 400;
-    public static final short SCREEN_MID_HEIGHT = 300;
+    public static final short SCREEN_MID_HEIGHT = 330;
     public static final short SCREEN_WIDTH = SCREEN_MID_WIDTH*2;
     public static final short SCREEN_HEIGHT = SCREEN_MID_HEIGHT*2;
 

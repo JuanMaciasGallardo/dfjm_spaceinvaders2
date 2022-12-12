@@ -1,6 +1,8 @@
 package com.politecnicomalaga.sp2.model;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.utils.Array;
 import com.politecnicomalaga.sp2.managers.AssetsManager;
 import com.politecnicomalaga.sp2.managers.ScreensManager;
@@ -12,15 +14,19 @@ public class Collisions {
     private Battalion empire;
 
     private Game game;
-
+    private Sound sndExplosion;
 
     public Collisions(PlayerSpaceShip heroShip, Battalion empire, Game game) {
         this.heroShip = heroShip;
         this.empire = empire;
         this.game = game;
+
+        sndExplosion = Gdx.audio.newSound(Gdx.files.internal(AssetsManager.SND_EXPLOSION));
     }//Constructor
 
-    public void checkCollisionsEmemyShip() {
+    // RETURNS IF GAME ENDS.
+    public boolean checkCollisionsEmemyShip() {
+
         // CHECK COLLISIONS
         // FOR OF BULLETS
         for (int f=0; f<heroShip.getBullets().size; f++) {
@@ -41,6 +47,7 @@ public class Collisions {
                             heroShip.getBullets().removeIndex(f);
                             bullet.remove();
 
+                            sndExplosion.play();
                             sq.getTroops().removeIndex(c);
                             enemy.removeWhenYouCan();
 
@@ -49,7 +56,7 @@ public class Collisions {
                             }//IF
 
                             if (empire.getSquads().size == 0) {
-                                game.setScreen(ScreensManager.getSingleton().getScreen(game, ScreensManager.Screens.GAMEOVER));
+                                return true;
                             }//IF
                         }//IF
                     }//FOR
@@ -58,9 +65,12 @@ public class Collisions {
                 }//IF
             }//FOR
         }//FOR
+
+        return false;
     }//COLLISIONS
 
-    public void checkCollisionsPlayerSpaceShip() {
+    // RETURNS IF GAME ENDS
+    public boolean checkCollisionsPlayerSpaceShip() {
         Array<EnemyBullet> activeBullets = empire.getActiveBullets();
         for (int f=0; f<activeBullets.size; f++) {
             EnemyBullet enemyBullet = activeBullets.get(f);
@@ -69,9 +79,12 @@ public class Collisions {
             if (heroShip.getY() + enemyBullet.getHeight() > enemyBullet.getY()) {
                 // IF COLLISION
                 if (heroShip.isColliding(enemyBullet)) {
-                    game.setScreen(ScreensManager.getSingleton().getScreen(game, ScreensManager.Screens.GAMEOVER));
+                    sndExplosion.play();
+                    return true;
                 }//IF
             }//IF
         }//FOR
+
+        return false;
     }//COLLISIONS
 }//CLASS

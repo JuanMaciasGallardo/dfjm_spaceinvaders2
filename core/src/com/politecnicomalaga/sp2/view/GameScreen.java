@@ -39,8 +39,13 @@ public class GameScreen implements Screen {
     private Music ostLoop;
     private boolean bStart;
 
+    private boolean bEnd;
+
     public GameScreen(Game aGame) {
         game = aGame;
+
+        // THE GAME IS NOT OVER
+        bEnd = false;
 
         // MUSIC CREATION.
         ostInit = Gdx.audio.newMusic(Gdx.files.internal(AssetsManager.OST_GAME_INTRO));
@@ -104,12 +109,7 @@ public class GameScreen implements Screen {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        // RENDER COLLISIONS
-        collisions.checkCollisionsEmemyShip();
-        collisions.checkCollisionsPlayerSpaceShip();
-
         // PLAY MUSIC
-
         if (!ostInit.isPlaying() && bStart) {
             ostInit.play();
             bStart = false;
@@ -117,6 +117,14 @@ public class GameScreen implements Screen {
 
         if (!ostInit.isPlaying() && !ostLoop.isPlaying() && !bStart) {
             ostLoop.play();
+        }
+
+        // RENDER COLLISIONS
+        bEnd = collisions.checkCollisionsEmemyShip() || collisions.checkCollisionsPlayerSpaceShip();
+        if (bEnd) {
+            ostInit.stop();
+            ostLoop.stop();
+            game.setScreen(ScreensManager.getSingleton().getScreen(game, ScreensManager.Screens.GAMEOVER));
         }
 
         // PAINT ACTORS

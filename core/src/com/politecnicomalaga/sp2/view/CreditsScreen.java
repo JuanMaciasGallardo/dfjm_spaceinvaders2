@@ -99,7 +99,7 @@ public class CreditsScreen implements Screen {
         lJUnitSupremeLider.setY(stage.getHeight()-lEnterprise.getHeight()*5f);
         lJUnitSupremeLider.setWidth(stage.getWidth());
 
-        lJuan = new Label(JUAN,skin);
+        lJuan = new Label(FELIPE,skin);
         lJuan.setAlignment(Align.center);
         lJuan.setY(stage.getHeight()-lEnterprise.getHeight()*6.25f);
         lJuan.setWidth(stage.getWidth());
@@ -125,7 +125,7 @@ public class CreditsScreen implements Screen {
         lDavid.setY(stage.getHeight()-lEnterprise.getHeight()*10.75f);
         lDavid.setWidth(stage.getWidth());
 
-        lFelipe = new Label(FELIPE, skin);
+        lFelipe = new Label(JUAN, skin);
         lFelipe.setAlignment(Align.center);
         lFelipe.setY(stage.getHeight()-lEnterprise.getHeight()*11.75f);
         lFelipe.setWidth(stage.getWidth());
