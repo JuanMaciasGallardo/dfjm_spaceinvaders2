@@ -86,7 +86,9 @@ public class PlayerSpaceShip extends Actor {
     }//UPDATEBODY
 
     @Override
-    public void draw(Batch batch, float parentAlpha) {
+    public void act(float delta) {
+        super.act(delta);
+
         // CHECK WHEN THE PLAYER CAN SHOOT
         if (isShooting) {
             if (deltaBullet+SettingsManager.BULLET_PLAYER_RATIO < GameManager.getSingleton().getGameTime()) {
@@ -103,7 +105,10 @@ public class PlayerSpaceShip extends Actor {
                 break;
             }//IF
         }//FOR
+    }//ACT
 
+    @Override
+    public void draw(Batch batch, float parentAlpha) {
         // PAINT
         for (int f=0; f<activeBullets.size; f++) {
             activeBullets.get(f).setY(activeBullets.get(f).getY()+SettingsManager.BULLET_PLAYER_SPEED);
